@@ -3,14 +3,15 @@ package com.car_management.model;
 import javax.persistence.*;
 
 @Entity
-public class PhieuXuat {
+public class OderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String maPhieuXuat;
-    private String ngayXuat;
+    private boolean flag;
+    private int quantity;
     @ManyToOne
-    private NhanVien nhanVien;
+    private Car car;
     @ManyToOne
-    private KhachHang khachHang;
+    private Orders orders;
+    private double price;
 }

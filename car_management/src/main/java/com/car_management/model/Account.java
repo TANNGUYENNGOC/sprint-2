@@ -6,13 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class NhaCungCap {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String maNhaCungCap;
-    private String tenNhaCungCap;
-    private String diaChi;
-    private String sdt;
+    private String avata;
     private String email;
+    private String password;
 }

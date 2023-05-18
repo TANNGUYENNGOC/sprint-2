@@ -3,14 +3,13 @@ package com.car_management.model;
 import javax.persistence.*;
 
 @Entity
-public class PhieuNhap {
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String maPhieuNhap;
-    private String ngayNhao;
     @ManyToOne
-    private NhanVien nhanVien;
-    @ManyToOne
-    private NhaCungCap nhaCungCap;
+    private Customer customer;
+    private int totalOder;
+    private String createDate;
+    private String modifyDate;
 }

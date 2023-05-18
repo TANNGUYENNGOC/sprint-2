@@ -3,12 +3,11 @@ package com.car_management.model;
 import javax.persistence.*;
 
 @Entity
-public class UserRole {
+public class Img {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String url;
     @ManyToOne
-    private NhanVien nhanVien;
-    @ManyToOne
-    private Role role;
+    private Car car;
 }
