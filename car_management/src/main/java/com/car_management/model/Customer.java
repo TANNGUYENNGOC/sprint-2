@@ -1,5 +1,7 @@
 package com.car_management.model;
 
+import com.car_management.model.user.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,6 @@ public class Customer {
     private int gender;
     private String phoneNumber;
     @ManyToOne
-    private Account account;
+    private User user;
 
 }
