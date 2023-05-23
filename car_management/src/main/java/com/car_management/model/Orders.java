@@ -1,5 +1,7 @@
 package com.car_management.model;
 
+import com.car_management.model.user.User;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +10,7 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
-    private Customer customer;
+    private User user;
     private int totalOder;
     private String createDate;
     private String modifyDate;

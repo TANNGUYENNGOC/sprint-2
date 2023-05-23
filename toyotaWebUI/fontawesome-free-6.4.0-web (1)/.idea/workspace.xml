@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1a58b8a5-7381-491d-8be0-38a3dbb506a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/model/project-json.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/service/token-storage.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/controller/CarRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/controller/CartRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/dto/car/ICarDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/repository/ICarRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/repository/ICarSeriesRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/repository/ICarTypeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/repository/ICartRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/repository/ICustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/service/car/CarServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/service/car/ICarService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/service/cart/CartServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/service/cart/ICartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/detail/detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/detail/detail.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/detail/detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/detail/detail.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/list/list.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/list/list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/list/list.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/list/list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/model/car.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/model/car.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/src/app/service/login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../car-management-fe/src/app/service/login.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car-management-fe/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../car-management-fe/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/controller/authentication/AuthRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/controller/authentication/AuthRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/model/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/model/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/model/CarSeries.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/model/CarSeries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/model/CarType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/model/CarType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../car_management/src/main/java/com/car_management/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../duydungne/personal-project" beforeDir="false" afterPath="$PROJECT_DIR$/../../duydungne/personal-project" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2Q6stQGmwjlhTHfvEwJMjL9k3Lq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1a58b8a5-7381-491d-8be0-38a3dbb506a8" name="Default Changelist" comment="" />
+      <created>1684685579720</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684685579720</updated>
+      <workItem from="1684685580955" duration="20000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="421" y="100" key="FileChooserDialogImpl" timestamp="1684685598703">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="421" y="100" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1684685598703" />
+  </component>
+</project>

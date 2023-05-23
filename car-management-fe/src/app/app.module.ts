@@ -8,11 +8,13 @@ import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { DetailComponent } from './detail/detail.component';
 import { CartShoppingComponent } from './cart-shopping/cart-shopping.component';
-import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { BookingComponent } from './booking/booking.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { ListCarComponent } from './list-car/list-car.component';
+import { RegisterAnAccountComponent } from './register-an-account/register-an-account.component';
+import { CartManagementComponent } from './cart-management/cart-management.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,11 @@ import {HttpClientModule} from "@angular/common/http";
     FooterComponent,
     DetailComponent,
     CartShoppingComponent,
-    ListComponent,
     LoginComponent,
-    BookingComponent
-  ],
+    BookingComponent,
+    ListCarComponent,
+    RegisterAnAccountComponent,
+    CartManagementComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

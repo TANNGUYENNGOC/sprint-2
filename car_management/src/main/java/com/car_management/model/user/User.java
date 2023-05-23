@@ -32,6 +32,7 @@ public class User {
     private String userName;
     @Column(nullable = false)
     private String password;
+    private String avatar;
     private LocalDateTime expiryTime;
     private String otpSecret;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -139,5 +140,13 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="fontawesome-free-6.4.0-web (1)/fontawesome-free-6.4.0-web/css/all.min.css">
+        <style>
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #f7f7f7;
+                padding: 20px 50px; 
+                
+                
+                
+              }
+              
+              
+              .logo img {
+                height: 60px;
+                width: auto; 
+              }
+              
+              div ul {
+                list-style-type: none;
+                display: flex;
+                margin-right: 2em;
+              }
+              
+                hr.border{
+                border: 100px solid red;
+              }
+              div ul li {
+                margin-right: 20px; 
+              }
+              
+              div ul li a {
+                text-decoration:none;
+                color:#333;
+              }
+            .dropdown-f1 {  
+            position: relative;  
+            display: inline-block;
+        }
+            .dropdown-content-f1 {  
+                display: none;  
+                position: absolute;  
+                background-color: #e9d8f4;  
+                min-width: 160px;  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);  
+                padding: 12px 16px;  z-index: 1;
+            }
+            .dropdown-f1:hover .dropdown-content-f1 {  
+                display: block;
+            }
+            nav {
+
+                background: white;
+                position:relative;
+              }
+              
+              nav ul {
+                background: white;
+                list-style:none;
+
+              
+              }
+              
+              
+              nav ul li {
+                display: inline-block;
+              }
+              
+              
+              nav ul li a {
+                color:black;
+                display:block;
+                padding:0px 0.3rem;
+                text-decoration:none;
+                float: left;
+                height: 60px;
+                 line-height: 60px;
+              }
+      
+              nav ul li:hover > ul {
+                display:block;
+              }
+              
+              nav ul ul {
+                background: white;
+                padding:0;
+                text-align: center;
+                display:none;
+                  width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0px;
+              }
+              .banner{
+                height: 600px;
+                max-height: 566px;
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+                
+                transition: 0.4s;
+              }
+              .banner-img{
+                max-width: 100%;
+                max-height: 600px;
+                width: 100%;
+                height: 100%;
+                object-position: center;
+                object-fit: cover;
+              }
+              .rec-introduce-text {
+                font-family: Toyota Type;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 27px;
+                letter-spacing: 0em;
+                text-align: center;
+                margin-bottom: 64px;
+            }
+            .rec-introduce-statistical {
+                display: flex;
+                justify-content: space-between;
+                /* column-count: 3; */
+                flex-wrap: wrap;
+                flex-direction: row;
+            }
+            .rec-introduce-item {
+                flex: 1;
+                text-align: center;
+                padding: 0 53px;
+            }
+            .rec-introduce-number {
+                font-family: Toyota Type;
+                font-size: 60px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 90px;
+                letter-spacing: 0em;
+                text-align: center;
+                margin-bottom: 28px;
+            }
+            .rec-why-title {
+                font-family: Toyota Type;
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 38px;
+                letter-spacing: 0em;
+                text-align: center;
+                margin-bottom: 36px;
+            }
+            .rec-why-content {
+                width: 100%;
+                height: 532px;
+                position: relative;
+            }
+            .rec-why-content img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+            .rec-why-mask {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: rgba(0, 0, 0, 0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0 120px;
+            }
+            .rec-why-mask p {
+                font-family: Toyota Type;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 36px;
+                letter-spacing: 0em;
+                text-align: center;
+                color: #fff;
+            }
+            .rec-list-active {
+                padding: 81px 80px 18px 80px;
+                background: #f5f5f5;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                /* row-gap: 74px; */
+            }
+            .rec-list-active-item {
+                text-align: center;
+                position: relative;
+                width: calc(100% / 3);
+                margin-bottom: 68px;
+            }
+            rec-list-active-item img {
+                vertical-align: middle;
+                border-style: none;
+            }
+            .rec-list-active-name h2 {
+                font-family: Toyota Type;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 29px;
+                letter-spacing: 0em;
+                text-align: center;
+                margin-bottom: 60px;
+            }
+            .rec-list-active-readmore a {
+                font-family: Toyota Type;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 17px;
+                letter-spacing: 0em;
+                text-align: left;
+                text-transform: uppercase;
+                position: relative;
+                color: #000;
+                justify-content: center;
+                align-items: center;
+                display: inline-block;
+            }
+            .rec-contact-footer-item:first-child .rec-contact-footer-title {
+                font-family: Toyota Type;
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 38px;
+                letter-spacing: 0em;
+                text-align: center;
+                color: #fff;
+                margin-bottom: 36px;
+            }
+            .rec-contact-footer {
+                display: flex;
+                text-align: center;
+                flex-direction: row;
+            }
+            .rec-contact-footer-item:first-child .rec-contact-footer-content {
+                font-family: Toyota Type;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 22px;
+                letter-spacing: 0em;
+                text-align: center;
+                color: #fff;
+                margin-bottom: 36px;
+            }
+            .rec-contact-footer-item:first-child .rec-contact-footer-readmore a, .rec-contact-footer-item:last-child .rec-contact-footer-readmore a {
+                display: inline-flex;
+                justify-content: center;
+                height: 35px;
+                width: 137px;
+                background: #fff;
+                align-items: center;
+                border-radius: 17.5px;
+                font-family: Toyota Type;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 23px;
+                letter-spacing: 0em;
+                text-align: left;
+            }
+            .rec-contact-footer-item:last-child .rec-contact-footer-title {
+                font-family: Toyota Type;
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 38px;
+                letter-spacing: 0em;
+                text-align: center;
+                margin-bottom: 36px;
+            }
+            .page-content-consulting-title {
+                font-size: 25px;
+                line-height: 201.5%;
+                text-align: center;
+                color: #000000;
+                font-weight: 600;
+            }
+            .page-content-consulting-descriiption {
+                font-size: 16px;
+                line-height: 201.5%;
+                text-align: center;
+                color: #000000;
+                margin: 0;
+            }
+          
+            .footer-menu-contain .box-footer-menu .box-menu-contain .menu-footer-item .menu-footer-title {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 120%;
+                color: #1A1A1A;
+                text-transform: uppercase;
+                margin-bottom: 1em;
+            }
+            .footer-menu-contain .box-footer-menu {
+                max-width: 1200px;
+                margin: auto;
+                padding-top: 48px;
+                padding-bottom: 40px;
+            }
+            .footer-menu-contain .box-footer-menu .box-menu-contain {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .footer-menu-contain .box-footer-menu .box-menu-contain .menu-footer-item {
+                width: calc(100% / 6);
+                /* background-color: red; */
+                /* height: 200px; */
+            }.footer-menu-contain .box-footer-menu .box-menu-contain .menu-footer-item ul {
+                display: block;
+                list-style-type: disc;
+               
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: -2.5em;
+                margin-inline-end: 0px;
+                padding-inline-start: 40px;
+            }
+            .row {
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                margin-right: -15px;
+                margin-left: -15px;
+            }
+            .footer-content-item {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .box-footer-content-item .footer-content-item  {
+                display: block;
+                list-style-type: disc;
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                padding-inline-start: 40px;
+            }
+            .box-submit-info {
+                display: flex;
+            }
+            .box-submit-info .custom-footer-input {
+                height: 40px;
+                width: 100%;
+                max-width: 246px;
+                margin-right: 12px;
+                color: #FFFFFF;
+                border: 1px solid #FFFFFF;
+                background-color: #101010;
+            }
+            .box-submit-info .custom-footer-button {
+                height: 40px;
+                width: 40px;
+                background-color: #EB0A1E;
+                outline: none;
+                border: none;
+                color: #FFFFFF;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .copry-right-footer {
+                margin-top: 40px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .copry-right-footer p, .copry-right-footer p a {
+                font-size: 12px;
+                line-height: 17px;
+                letter-spacing: 0.025em;
+                color: #808080;
+                margin-bottom: 0;
+            }
+            @media (min-width: 992px){
+            .col-lg-5 {
+                -ms-flex: 0 0 41.666667%;
+                flex: 0 0 41.666667%;
+                max-width: 41.666667%;
+                .col-lg-3 {
+                    -ms-flex: 0 0 25%;
+                    flex: 0 0 25%;
+                    max-width: 25%;}
+            }
+            }
+        </style>
+    </head>
+    <body>
+        <header style=" background-color: white; height: 9rem;" >
+            <div class="logo" style="margin-left: 5rem; margin-bottom:2rem;">
+              <img src="images/logo.png" alt="Your Logo">
+            </div>
+            <div style="margin-left: 20rem">
+                <div  class="d-flex justify-content-center ">
+                    <ul>
+                        <li>
+                            <div class="dropdown-f1">  
+                                <span>VR Showroom   <i class="fa-solid fa-chevron-down"></i></span>  
+                                <div class="dropdown-content-f1" style="background-color: white;">
+                                    <a style="font-weight:bold;">SUV - MPV</a>
+                                    <a style="font-weight:bold;">Sedan - Bán tải</a> 
+                                  </div>
+                            </div>
+                        </li>
+                        <li><a href="#">Khách hàng dự án</a></li>
+                        <li><a href="#">Tìm Đại lý</a></li>
+                        <li ><i class="fa-sharp fa-solid fa-magnifying-glass"></i></li>
+                        <li style="color:blue;"><i class="fa-brands fa-facebook"></i></li>
+                        <li style="color:red;"><i class="fa-brands fa-youtube"></i></li>
+                        <li><a href=""><i class="fa-solid fa-cart-shopping"></i></a></li>
+                        <li class="login" style="border: px solid black; margin: 1px 10px; background:#ccc; color:red;"><a href=""><i class="fa-solid fa-right-to-bracket"></i> LOGIN</a></li>
+                        
+                      </ul>
+                   
+                </div>
+                <div>
+                    <nav>
+                        <ul>
+                            
+                            <li><a href="#">Sản phẩm</a>
+                                
+                                <ul>
+                                    <li><a href="#"></a></li>
+                                    <li><a href="#">Illustrator</a></li>
+                                    <li><a href="#">Web Design</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Công nghệ <i class="fa-solid fa-chevron-down"></i>
+                            </a>
+                                <ul >
+                                    <li><a href="#"><img src="images/cn-1.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="images/cn-2.jpg" alt=""></a></li>
+                                    <li><a href="#"><img src="images/cn-3.jpg" alt=""></a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Dịch vụ <i class="fa-solid fa-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Photoshop</a></li>
+                                    <li><a href="#">Illustrator</a></li>
+                                    <li><a href="#">Web Design</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Tin tức & Khuyến mãi <i class="fa-solid fa-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Photoshop</a></li>
+                                    <li><a href="#">Illustrator</a></li>
+                                    <li><a href="#">Web Design</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Điện hóa <i class="fa-solid fa-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Photoshop</a></li>
+                                    <li><a href="#">Illustrator</a></li>
+                                    <li><a href="#">Web Design</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Về Toyota Việt Nam <i class="fa-solid fa-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="#">Photoshop</a></li>
+                                    <li><a href="#">Illustrator</a></li>
+                                    <li><a href="#">Web Design</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                        </ul>
+                    </nav>
+                        
+                </div>
+            </div>
+            
+          </header>
+          <div class="banner">
+            <img class="banner-img" src="images/banner.jpg" alt="">
+          </div >
+          <div  class="page-content1">
+            <div class="rec-introduce"  style="padding: 60px 118px 80px 118px;" >
+                <div><p class="rec-introduce-text">Đến với Toyota Việt Nam, các bạn sẽ được trải nghiệm các khóa đào tạo bài bản theo tiêu chuẩn Tập đoàn Toyota toàn cầu, có cơ hội trải nghiệm môi trường làm việc chuyên nghiệp với các thành viên, đối tác trên toàn cầu. Chúng tôi tuyển dụng những nhân viên tài năng, những người mong muốn đóng góp cho hoạt động kinh doanh của công ty và cho xã hội Việt Nam. Hãy khám phá trang web của chúng tôi để tìm hiểu thêm về các cơ hội việc làm, cũng như cách thức để bạn trở thành một phần của đội ngũ toàn cầu đã tạo ra sự khác biệt cho hàng triệu người.
+
+                </p></div>
+                <div class="rec-introduce-statistical">
+                        <div class="rec-introduce-item">
+                            <div class="rec-introduce-number">1.500</div>
+                            <div class="rec-introduce-content">Hơn 1.500 thành viên trên khắp Việt Nam cùng chia sẻ niềm đam mê đổi mới và chuyển động</div>
+                        </div>
+                        <div class="rec-introduce-item">
+                            <div class="rec-introduce-number">1.500</div>
+                            <div class="rec-introduce-content">Hơn 1.500 thành viên trên khắp Việt Nam cùng chia sẻ niềm đam mê đổi mới và chuyển động</div>
+                        </div>
+                        <div class="rec-introduce-item">
+                            <div class="rec-introduce-number">1.500</div>
+                            <div class="rec-introduce-content">Hơn 1.500 thành viên trên khắp Việt Nam cùng chia sẻ niềm đam mê đổi mới và chuyển động</div>
+                        </div>
+                </div>
+            </div>
+            <div class="rec-why" >
+                <h1 class="rec-why-title">Vì sao lựa chọn nghề nghiệp tại Toyota Việt Nam?</h1>
+                <div class="rec-why-content">
+                    <img src="images/banner2.png" alt="">
+                    <div class="rec-why-mask"><p>Toyota tập trung đào tạo, phát triển nguồn nhân lực với mục đích nâng cao chất lượng công việc, từ đó nâng cao chất lượng và dịch vụ, đáp ứng nhu cầu ngày càng cao của khách hàng về chất lượng cũng như phát triển nguồn nhân lực chất lượng cho đất nước Việt Nam. Với quan điểm “Dù máy móc, thiết bị có hiện đại đến đâu thì con người vẫn luôn là yếu tố then chốt”, Toyota ưu tiên chính sách phát triển nguồn nhân lực được xây dựng dựa trên phương pháp gắn kết trọn đời.</p></div>
+                </div>
+            </div>
+            <div class="rec-list-active" >
+                <div class="rec-list-active-item">
+                    <div class="rec-list-active-image" style="margin-bottom: 16px;">
+                        <img src="images/icon7.png" alt="">
+                    </div>
+                    <div class="rec-list-active-name">
+                        <h2>Tuyên bố chung về sử dụng lao động</h2>
+                    </div>
+                    <div class="rec-list-active-readmore">
+                        <a href="">Tìm hiểu <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <div class="rec-list-active-item">
+                    <div class="rec-list-active-image" style="margin-bottom: 16px;">
+                        <img src="images/icon7.png" alt="">
+                    </div>
+                    <div class="rec-list-active-name">
+                        <h2>Tuyên bố chung về sử dụng lao động</h2>
+                    </div>
+                    <div class="rec-list-active-readmore">
+                        <a href="">Tìm hiểu <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <div class="rec-list-active-item">
+                    <div class="rec-list-active-image" style="margin-bottom: 16px;">
+                        <img src="images/icon7.png" alt="">
+                    </div>
+                    <div class="rec-list-active-name">
+                        <h2>Tuyên bố chung về sử dụng lao động</h2>
+                    </div>
+                    <div class="rec-list-active-readmore">
+                        <a href="">Tìm hiểu <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <div class="rec-list-active-item">
+                    <div class="rec-list-active-image" style="margin-bottom: 16px;">
+                        <img src="images/icon7.png" alt="">
+                    </div>
+                    <div class="rec-list-active-name">
+                        <h2>Tuyên bố chung về sử dụng lao động</h2>
+                    </div>
+                    <div class="rec-list-active-readmore">
+                        <a href="">Tìm hiểu <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <div class="rec-list-active-item">
+                    <div class="rec-list-active-image" style="margin-bottom: 16px;">
+                        <img src="images/icon7.png" alt="">
+                    </div>
+                    <div class="rec-list-active-name">
+                        <h2>Tuyên bố chung về sử dụng lao động</h2>
+                    </div>
+                    <div class="rec-list-active-readmore">
+                        <a href="">Tìm hiểu <i class="fa-solid fa-angle-right"></i></a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="unknown-text" style="padding: 80px 118px;
+            text-align: center;" >Thời gian làm việc trung bình của các thành viên Toyota Việt Nam là hơn 11 năm, điều này cho thấy Toyota Việt Nam trở thành một trong những nhà tuyển dụng đáng tin cậy và tận tâm tại Việt Nam.</div>
+            
+            <div class="rec-contact-footer" >
+                <div class="rec-contact-footer-item" style="background: #eb0a1e;padding: 144px 60px;    width: 50%;">
+                    <div class="rec-contact-footer-title">Môi trường làm việc</div>
+                    <p class="rec-contact-footer-content">Môi trường làm việc tại Toyota được định hướng bởi Triết lý Toyota, hệ thống các nguyên tắc ứng xử, đạo đức và cách làm việc độc đáo của chúng tôi.</p>
+                    <div class="rec-contact-footer-readmore"><a href="">TÌM HIỂU</a></div>
+                </div>
+                <div class="rec-contact-footer-item" style="padding: 144px 60px;    width: 50%;">
+                    <div class="rec-contact-footer-title">Môi trường làm việc</div>
+                    <p class="rec-contact-footer-content">Môi trường làm việc tại Toyota được định hướng bởi Triết lý Toyota, hệ thống các nguyên tắc ứng xử, đạo đức và cách làm việc độc đáo của chúng tôi.</p>
+                    <div class="rec-contact-footer-readmore" ><a style="background: #eb0a1e; color:white;" href="">TÌM HIỂU</a></div>
+                </div>
+            </div>
+            <div class="page-content-consulting" style="padding: 73px 0 63px 0;
+            background-color: #F5F5F5;">
+                <h3 class="page-content-consulting-title">Liên hệ nhà tuyển dụng</h3>
+                <p class="page-content-consulting-descriiption">Nhóm Tuyển dụng, Phòng Nhân sự - Công ty Ô tô Toyota Việt Nam</p>
+                <p class="page-content-consulting-descriiption"><Strong>Địa chỉ:</Strong> Phường Phúc Thắng, Thành phố Phúc Yên, Tỉnh Vĩnh Phúc</p>
+                <p class="page-content-consulting-descriiption"><Strong>Email</Strong> recruitment@toyotavn.com.vn</p>
+                <p class="page-content-consulting-descriiption"><Strong>Điện thoại:</Strong> 0211 3868 100, số máy lẻ: 2262</p>
+            </div>
+          </div>
+    <footer>
+        <div class="footer-menu-contain" style="border-top: 1px solid #cccccc;">
+            <div class="box-footer-menu" >
+                <div class="box-menu-contain">
+                    <div class="menu-footer-item">
+                        <p class="menu-footer-title">SẢN PHẨM</p>
+                        <div class="box-menu-link">
+                            <ul style="list-style: none;display: block;
+                            ">
+                                <li style="margin-bottom: 16px;">Hatchback</li>
+                                <li style="margin-bottom: 16px;">Sedan</li>
+                                <li style="margin-bottom: 16px;">SUV</li>
+                                <li style="margin-bottom: 16px;">Đa dụng</li>
+                                <li style="margin-bottom: 16px;">Thương mại</li>
+                                <li style="margin-bottom: 16px;">Bán tải</li>
+                                <li style="margin-bottom: 16px;">Khách hàng dự án</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="menu-footer-item">
+                        <p class="menu-footer-title">SẢN PHẨM</p>
+                        <div class="box-menu-link">
+                            <ul style="list-style: none;display: block;
+                            ">
+                                <li style="margin-bottom: 16px;">Hatchback</li>
+                                <li style="margin-bottom: 16px;">Sedan</li>
+                                <li style="margin-bottom: 16px;">SUV</li>
+                                <li style="margin-bottom: 16px;">Đa dụng</li>
+                                <li style="margin-bottom: 16px;">Thương mại</li>
+                                <li style="margin-bottom: 16px;">Bán tải</li>
+                                <li style="margin-bottom: 16px;">Khách hàng dự án</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="menu-footer-item">
+                        <p class="menu-footer-title">SẢN PHẨM</p>
+                        <div class="box-menu-link">
+                            <ul style="list-style: none;display: block;
+                            ">
+                                <li style="margin-bottom: 16px;">Hatchback</li>
+                                <li style="margin-bottom: 16px;">Sedan</li>
+                                <li style="margin-bottom: 16px;">SUV</li>
+                                <li style="margin-bottom: 16px;">Đa dụng</li>
+                                <li style="margin-bottom: 16px;">Thương mại</li>
+                                <li style="margin-bottom: 16px;">Bán tải</li>
+                                <li style="margin-bottom: 16px;">Khách hàng dự án</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="menu-footer-item">
+                        <p class="menu-footer-title">SẢN PHẨM</p>
+                        <div class="box-menu-link">
+                            <ul style="list-style: none;display: block;
+                            ">
+                                <li style="margin-bottom: 16px;">Hatchback</li>
+                                <li style="margin-bottom: 16px;">Sedan</li>
+                                <li style="margin-bottom: 16px;">SUV</li>
+                                <li style="margin-bottom: 16px;">Đa dụng</li>
+                                <li style="margin-bottom: 16px;">Thương mại</li>
+                                <li style="margin-bottom: 16px;">Bán tải</li>
+                                <li style="margin-bottom: 16px;">Khách hàng dự án</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="menu-footer-item">
+                        <p class="menu-footer-title">SẢN PHẨM</p>
+                        <div class="box-menu-link">
+                            <ul style="list-style: none;display: block;
+                            ">
+                                <li style="margin-bottom: 16px;">Hatchback</li>
+                                <li style="margin-bottom: 16px;">Sedan</li>
+                                <li style="margin-bottom: 16px;">SUV</li>
+                                <li style="margin-bottom: 16px;">Đa dụng</li>
+                                <li style="margin-bottom: 16px;">Thương mại</li>
+                                <li style="margin-bottom: 16px;">Bán tải</li>
+                                <li style="margin-bottom: 16px;">Khách hàng dự án</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="menu-footer-item">
+                        <p class="menu-footer-title">SẢN PHẨM</p>
+                        <div class="box-menu-link">
+                            <ul style="list-style: none;display: block;
+                            ">
+                                <li style="margin-bottom: 16px;">Hatchback</li>
+                                <li style="margin-bottom: 16px;">Sedan</li>
+                                <li style="margin-bottom: 16px;">SUV</li>
+                                <li style="margin-bottom: 16px;">Đa dụng</li>
+                                <li style="margin-bottom: 16px;">Thương mại</li>
+                                <li style="margin-bottom: 16px;">Bán tải</li>
+                                <li style="margin-bottom: 16px;">Khách hàng dự án</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="box-footer-contain" style="background-color: #101010;color: #FFFFFF;">
+                <div class="footer-contain">
+                    <div class="footer-menu-box row" >
+                        <div class="col-12 col-lg-5" style="" >
+                            <p>CÔNG TY Ô TÔ TOYOTA VIỆT NAM</p>
+                            <ul class="footer-content-item" style="display:block;">
+                                <li>Số GCNĐKDN: 2500150335</li>
+                                <li>Cấp lần đầu: Ngày 26/03/2007</li>
+                                <li>Đăng ký thay đổi lần thứ 19: Ngày 02/02/2023</li>
+                                <li>Cơ quan cấp: Sở kế hoạch và đầu tư tỉnh Vĩnh Phúc</li>
+                                <li>Địa chỉ: Phường Phúc Thắng, Thành phố Phúc Yên, Tỉnh Vĩnh Phúc, Việt Nam</li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <p class="footer-menu-title">ĐƯỜNG DÂY NÓNG</p>
+                            <ul class="footer-content-item" style="display:block;">
+                                <li>1800 1524</li>
+                                <li>0916 001 524</li>
+                                <li>0916 001 524</li>
+                                <li>Hotline Hỗ trợ tài chính: (84-28) 7309 0998</li>
+                                <li>Hotline Bảo hiểm Toyota: 1900 633 384
+                                </li>
+                            </ul>
+                    </div>
+                        <div class="col-12 col-lg-4">
+                            <p class="footer-menu-title">ĐĂNG KÝ NHẬN BẢN TIN</p>
+                            <p class="footer-desciption">Đừng bỏ lỡ những tin tức khuyến mãi của chúng tôi</p>
+                            <div class="box-submit-info">
+                                <input type="text" placeholder="email" class="custom-footer-input">
+                                <button class="custom-footer-button"><i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="copry-right-footer">   
+                        <p>
+                            <a href="">Hồ sơ trang</a> |
+                            <a href="">Chính sách và điều khoản</a> |
+                            <a href="">Chính sách bảo mật thông tin cá nhân</a> 
+                        </p>
+                        <p style="margin: right 10px;">© Bản quyền thuộc về Công ty ô tô Toyota Việt Nam</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+          
+    </body>
+</html>

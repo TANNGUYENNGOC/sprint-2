@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-6">
           <div class="card-body">
-            <h1 class="card-title " style="font-family: Arial;font-size: 40px;font-weight: revert">Camry 2.0G</h1>
+            <h1 class="card-title " style="font-family: Arial;font-size: 40px;font-weight: revert">{{car.name}}</h1>
             <br>
             <h4 style="font-family: Arial; font-weight: lighter">Xứng tầm doanh nhân</h4>
             <br>
@@ -36,21 +36,21 @@
             <div class="shadow">
               <div class="row d-flex">
                 <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4 text-center"><h5>Số chỗ ngồi</h5>
-                  <p>5</p></div>
+                  <p>{{car.numberOfSeats}}</p></div>
                 <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4 text-center"
                      style="border-left: #6c757d 1px solid"><h5>Kiểu dáng</h5>
-                  <p>Sedan</p></div>
+                  <p>{{car.carType.name}}</p></div>
                 <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4 text-center"
                      style="border-left: #6c757d 1px solid"><h5>Nhiên liệu</h5>
-                  <p>Xăng</p></div>
+                  <p>{{car.fuel}}</p></div>
               </div>
               <br>
               <div class="row d-flex">
                 <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4 text-center"><h5>Xuất xứ</h5>
-                  <p>Thái Lan</p></div>
+                  <p>{{car.origin}}</p></div>
                 <div class="col-8 col-xl-8 col-sm-8 col-md-8 col-lg-8 text-center"
                      style="border-left: #6c757d 1px solid"><h5>Giá từ</h5>
-                  <p>1.105.000.000 VND</p></div>
+                  <p>{{car.price}}000 VND</p></div>
               </div>
             </div>
           </div>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav {
+            text-align:center;
+            width: 100%;
+            background: white;
+            padding: 0;
+            margin: 0;
+            height: 60px;
+            position:relative;
+          }
+          
+          nav ul {
+            background: white;
+            list-style:none;
+            padding:0 20px;
+            margin: 0;
+            height: 60px;
+          
+          }
+          
+          
+          nav ul li {
+            display: inline-block;
+          }
+          
+          
+          nav ul li a {
+            color:black;
+            display:block;
+            padding:0px 40px;
+            text-decoration:none;
+            float: left;
+            height: 60px;
+             line-height: 60px;
+          }
+  
+          nav ul li:hover > ul {
+            display:block;
+          }
+          
+          nav ul ul {
+            background: white;
+            padding:0;
+            text-align: center;
+            display:none;
+              width: 100%;
+            position: absolute;
+            top: 60px;
+            left: 0px;
+          }
+          
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Tutorials</a>
+                <ul>
+                    <li><a href="#">Photoshop</a></li>
+                    <li><a href="#">Illustrator</a></li>
+                    <li><a href="#">Web Design</a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">Articles</a>
+                <ul>
+                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#">User Experience</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Inspiration</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

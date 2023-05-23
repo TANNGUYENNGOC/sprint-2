@@ -10,5 +10,6 @@ export interface Car {
   discount?:number;
   carSeries?:CarSeries;
   origin?:string;
+  numberOfSeats?:number;
 
 }

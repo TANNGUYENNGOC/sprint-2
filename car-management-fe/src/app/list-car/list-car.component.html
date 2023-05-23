@@ -1,0 +1,506 @@
+<!--<style>-->
+<!--  * style {-->
+<!--    margin: 0;-->
+<!--    padding: 0;-->
+<!--  }-->
+
+<!--  .an {-->
+<!--    display: block;-->
+<!--    display: -webkit-box;-->
+<!--    /*height: 16px*1.3*3;*/-->
+<!--    font-size: 16px;-->
+<!--    line-height: 1.3;-->
+<!--    -webkit-line-clamp: 3; /* số dòng hiển thị */-->
+<!--    -webkit-box-orient: vertical;-->
+<!--    overflow: hidden;-->
+<!--    text-overflow: ellipsis;-->
+<!--    margin-top: 10px;-->
+<!--  }-->
+
+<!--  .hieuungDiv:hover {-->
+<!--    background-color: #b82525;-->
+<!--    transition: background-color 0.5s ease;-->
+<!--    width: 19rem;-->
+<!--  }-->
+
+<!--  @media (min-width: 1024px) {-->
+<!--    img {-->
+<!--      height: 10rem;-->
+<!--    }-->
+<!--  }-->
+
+<!--  @media (min-width: 768px) {-->
+<!--    img {-->
+<!--      height: 10rem;-->
+<!--    }-->
+<!--  }-->
+
+<!--  @media (min-width: 600px) {-->
+<!--    img {-->
+<!--      height: 10rem;-->
+<!--    }-->
+<!--  }-->
+
+<!--  @media (min-width: 375px) {-->
+<!--    img {-->
+<!--      height: 10rem;-->
+<!--    }-->
+<!--  }-->
+<!--</style>-->
+<!--<div>-->
+<!--  <div >-->
+<!--    &lt;!&ndash;    style="background-image: url('https://cdn.pixabay.com/photo/2015/10/09/21/12/stylish-979952_1280.jpg')">&ndash;&gt;-->
+<!--    <div class="container ">-->
+
+<!--      <div class="row">-->
+<!--        <div class="col-md-12 d-flex mt-5" style="border-bottom: #efbe29 5px solid">-->
+<!--          <div class=" col-12">-->
+<!--            <h1>TIN TỨC NỔI BẬT</h1>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <nav class="navbar ">-->
+<!--          <div class=" container-fluid">-->
+<!--            <div class="navbar-brand">-->
+<!--              <button  type="button" class="btn btn-outline-primary">+ Thêm mới-->
+<!--              </button>-->
+<!--            </div>-->
+
+<!--            <div class="navbar-brand d-flex">-->
+<!--              <select #idCarSeries class="form-select" aria-label="Default select example">-->
+<!--                <option selected value="">Dòng xe</option>-->
+<!--                <option *ngFor="let carSeries of listCarSeries" value="{{carSeries.id}}">{{carSeries.name}}</option>-->
+<!--              </select>-->
+<!--              <select #idCarType class="form-select" aria-label="Default select example">-->
+<!--                <option selected value="">Kiểu xe</option>-->
+<!--                <option *ngFor="let carType of listCarType" value="{{carType.id}}">{{carType.name}}</option>-->
+<!--              </select>-->
+<!--              <input #nameCar class="form-control me-2" type="search" placeholder="Tên xe"-->
+<!--                     aria-label="Search">-->
+<!--              <button (click)="getListCar(0,idCarSeries.value,idCarType.value,nameCar.value)" class="btn btn-outline-success" type="submit">Tìm kiếm-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </nav>-->
+<!--      </div>-->
+<!--      <div class="container">-->
+<!--        <div class="row">-->
+<!--          <div  *ngFor="let car of listCar" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" style="cursor: pointer;">-->
+<!--            <div class="card hieuungDiv" [routerLink]="['/detail',car.id]" style="border-radius: 0%">-->
+<!--              <img class="card-img-top" src="{{car.name}}" alt="...">-->
+<!--              <div class="card-body">-->
+<!--                <h5 class="card-title an">{{car.name}}</h5>-->
+<!--                <p class="card-text an" >ádxfgvhbj</p>-->
+<!--                <p class="card-text"><small style="float: right" class="text-muted">ádfghj</small></p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div style="margin-top: 12px">-->
+<!--        <div *ngIf="teamPage" class="d-flex justify-content-center" id="last-row">-->
+<!--          <nav aria-label="Page navigation example">-->
+<!--            <ul class="pagination">-->
+<!--              <li class="page-item" [ngClass]="teamPage.first ? 'disabled': ''">-->
+<!--                <a role="button" class="page-link" (click)="changePage(0)">Trang đầu</a>-->
+<!--              </li>-->
+<!--              <li class="page-item" [ngClass]="teamPage.first ? 'disabled': ''">-->
+<!--                <a role="button" class="page-link" (click)="changePage(teamPage.number - 1)"><</a>-->
+<!--              </li>-->
+<!--              <li class="page-item" *ngIf="teamPage.number - 3 > 0">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.number - 4)">{{teamPage.number - 3}}</a>-->
+<!--              </li>-->
+<!--              <li class="page-item" *ngIf="teamPage.number - 2 > 0">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.number - 3)">{{teamPage.number - 2}}</a>-->
+<!--              </li>-->
+<!--              <li class="page-item" *ngIf="teamPage.number - 1 > 0">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.number - 2)">{{teamPage.number - 1}}</a>-->
+<!--              </li>-->
+<!--              <li class="page-item" *ngIf="teamPage.number > 0">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.number - 1)">{{teamPage.number}}</a>-->
+<!--              </li>-->
+<!--              <li class="page-item active"><a class="page-link">{{teamPage.number + 1}}</a></li>-->
+<!--              <li class="page-item" *ngIf="teamPage.number + 2 <= teamPage.totalPages">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.number + 1)">{{teamPage.number + 2}}</a>-->
+<!--              </li>-->
+<!--              <li class="page-item" *ngIf="teamPage.number + 3 <= teamPage.totalPages">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.number + 2)">{{teamPage.number + 3}}</a>-->
+<!--              </li>-->
+<!--              <li class="page-item" *ngIf="teamPage.number + 4 <= teamPage.totalPages">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.number + 3)">{{teamPage.number + 4}}</a>-->
+<!--              </li>-->
+<!--              <li class="page-item" *ngIf="teamPage.number + 5 <= teamPage.totalPages">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.number + 4)">{{teamPage.number + 5}}</a>-->
+<!--              </li>-->
+<!--              <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.number + 1)">></a>-->
+<!--              </li>-->
+<!--              <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''">-->
+<!--                <a role="button" class="page-link"-->
+<!--                   (click)="changePage(teamPage.totalPages - 1)">-->
+<!--                  Trang cuối-->
+<!--                </a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </nav>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+<!--  </div>-->
+<!--</div>-->
+
+<style>
+  body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+  }
+  .list-car-container {
+    margin-top: 94px;
+    display: block;
+  }
+
+  .list-car-container .hero-banner-microsite-2 {
+    max-width: 1600px;
+    margin: auto;
+    position: relative;
+  }
+  .list-car-container .hero-banner-microsite-2 .hero-banner-image img {
+    max-height: 750px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .list-car-container .box-filter-product {
+    width: 100%;
+    max-width: 1200px;
+    height: 234px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* flex-direction: column; */
+  }
+  .select-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+  }
+  .select-group::after {
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #EB0A1E;
+    position: absolute;
+    right: 19.5px;
+    bottom: 10px;
+  }
+  .list-car-container .box-filter-product div {
+    margin-right: 18px;
+  }
+
+  .select-group-label {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0.025em;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+  }
+  label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+  .select-input {
+    width: 100%;
+    padding: 8.5px 47px;
+    border: 1px solid #CCCCCC;
+    outline: none;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    text-overflow: ellipsis;
+  }
+  option {
+    font-weight: normal;
+    display: block;
+    white-space: nowrap;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+  }
+  .list-car-container .box-product-contain-list-car {
+    background-color: #F5F5F5;
+    padding-top: 40px;
+    /* padding-bottom: 50px; */
+  }
+  .list-car-container .box-product-contain-list-car .product-contain-sort {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .list-car-container .box-product-contain-list-car .product-contain-sort .select-group {
+    width: 220px;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain {
+    position: relative;
+    max-width: 1200px;
+    margin: auto;
+
+  }
+  .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .row {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 40px;
+    position: relative;
+    cursor: pointer;
+  }
+  @media (min-width: 992px){
+    .col-lg-4 {
+      -ms-flex: 0 0 33.333333%;
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+    }}
+  @media (min-width: 768px){
+    .col-md-6 {
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%;
+    }}
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-image {
+    height: 134px;
+    width: calc(100% - 40px);
+    position: absolute;
+    z-index: 2;
+    top: 0;
+  }
+  .product-item-image a {
+    display: flex;
+    justify-content: center;
+  }
+  a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content {
+    position: absolute;
+    /* z-index: 1; */
+    margin-top: 67px;
+    /* height: 400px; */
+    /* padding: 91px 24px 20px 24px; */
+    padding: 0 24px;
+    padding-top: 91px;
+    padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #FFFFFF;
+    min-height: 450px;
+    position: relative;
+    box-shadow: 0px 4px 32px transparent;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-title {
+    margin: 0;
+    margin-bottom: 22px;
+    margin-top: 26px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 34px;
+    text-align: center;
+    color: #000000;
+    margin-left: -13px;
+    margin-right: -13px;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-price {
+    margin: 0;
+    margin-bottom: 32px;
+    text-align: center;
+    position: relative;
+    color: #000000;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-product-description {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30px;
+    width: calc(100% - 15px);
+    color: #000000;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-product-description > p {
+    margin: 0;
+    position: relative;
+    font-size: 16px;
+    line-height: 23px;
+    color: #1A1A1A;
+    margin-right: 25px;
+    margin-bottom: 16px;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-product-description > p::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    background-color: #3A3A3A;
+    position: absolute;
+    top: calc(calc(23px / 2) - 2.5px);
+    left: -15px;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-product-compare {
+    display: flex;
+    justify-content: center;
+    /* gap: 24px; */
+    margin-left: -24px;
+    margin-top: -50px;
+
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-product-compare > div {
+    margin-left: 24px;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-product-compare .btn-custom-red {
+    background-color: #EB0A1E;
+    color: #FFFFFF;
+    border: 1px solid transparent;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-product-compare a {
+    height: 47px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 17px;
+    text-decoration: none;
+    width: fit-content;
+  }
+  .list-car-container .box-product-contain-list-car .product-show-contain .product-show-item .box-product-item .product-item-content .content-product-compare .btn-custom-white {
+    border: 1px solid #1A1A1A;
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  .list-car-container .box-product-contain-list-car .product-pagination {
+    margin-top: 70px;
+  }
+</style>
+
+<app-header></app-header>
+<div class="list-car-container">
+  <div class="hero-banner-microsite-2">
+    <div class="hero-banner-image">
+      <img src="https://www.toyota.com.vn/media/ss3nth4s/1600x400.jpg" alt="">
+    </div>
+  </div>
+  <div class="box-filter-product">
+    <div class="select-group filter-item">
+      <label for="car-seat" class="select-group-label">
+        <h3 class="select-group-label">Số chỗ ngồi </h3>
+      </label>
+      <select class="select-input" name="car-seat" id="car-seat">
+        <option value=" disabled selected">Chọn</option>
+        <option value="01" class="start-choose">BMW</option>
+        <option value="01" class="start-choose">zz</option>
+        <option value="01" class="start-choose">zzz</option>
+        <option value="01" class="start-choose">zz</option>
+      </select>
+    </div>
+
+
+
+
+
+  </div>
+  <div class="box-product-contain-list-car">
+    <div class="product-contain-sort">
+      <div class="select-group">
+        <select class="select-input" name="car-sort" id="car-sort">
+          <option value="">Sắp xếp</option>
+          <option value="">Tất cả</option>
+          <option value="">Giá từ thấp tới cao</option>
+          <option value="">Giá từ cao tới thấp</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-show-contain">
+      <div class=""></div>
+      <div class=""></div>
+      <div class="row">
+        <div *ngFor="let car of listCar" class="col-12 col-md-4 col-lg-4 product-show-item">
+          <div class="box-product-item">
+            <div class="product-item-image">
+              <a href="/corolla-altis-1-8v">
+                <img class="lazy"  src="{{car.url}}" alt="Corolla Altis 1.8V" />
+
+              </a>
+            </div>
+            <div class="product-item-content">
+              <a href="/corolla-altis-1-8v">
+                <h2 class="content-title">{{car.name}}</h2>
+                <p class="content-price">
+                  <span>Giá từ {{car.price}}</span>
+                  <span>VNĐ</span>
+                </p>
+                <div class="content-product-description">
+                  <p>5 chỗ</p><br>
+                  <p>Sedan</p><br>
+                  <p>Xăng</p><br>
+                  <p>Th&#225;i Lan</p><br>
+                  <p>CVT</p><br>
+                  <p>Động cơ Xăng dung t&#237;ch 1798cc</p>
+                </div>
+              </a>
+              <div class="content-product-compare">
+                <div>
+                  <a class="btn-custom-red" href="/du-toan-chi-phi?modelId=317&amp;gradeId=1913">
+                    <span>DỰ TOÁN</span>
+                  </a>
+                </div>
+                <div>
+                  <a class="btn-custom-white" href="/so-sanh-xe?modelId=317&amp;&amp;gradeId=1913">
+                    <span>SO SÁNH</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div></div>
+  </div>
+  <div class="product-pagination"></div>
+
+</div>
+<app-footer></app-footer>

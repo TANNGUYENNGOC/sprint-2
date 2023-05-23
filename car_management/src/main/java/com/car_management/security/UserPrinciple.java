@@ -4,6 +4,7 @@ import com.car_management.model.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -21,15 +22,6 @@ public class UserPrinciple implements UserDetails {
 
     private Collection<? extends GrantedAuthority> roles;
 
-    public UserPrinciple(Integer id, String name, String userName, String email, String password, List<GrantedAuthority> authorities) {
-        this.id = id;
-        this.name = name;
-        this.username = userName;
-        this.email = email;
-        this.password = password;
-        this.roles = authorities;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -38,15 +30,25 @@ public class UserPrinciple implements UserDetails {
     public UserPrinciple() {
     }
 
+    public UserPrinciple(Integer id, String name, String username, String email, String password, String avatar, Collection<? extends GrantedAuthority> roles) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
+        this.roles = roles;
+    }
+
     public static UserPrinciple build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream().map(role ->
-                new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
+        List<GrantedAuthority> authorities = user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
         return new UserPrinciple(
                 user.getId(),
                 user.getName(),
                 user.getUserName(),
                 user.getEmail(),
                 user.getPassword(),
+                user.getAvatar(),
                 authorities
         );
     }
@@ -128,5 +130,4 @@ public class UserPrinciple implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }
