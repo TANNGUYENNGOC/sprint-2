@@ -47,5 +47,10 @@ public class CarServiceImpl implements ICarService{
         return iCarSeriesRepository.findAll();
     }
 
+    @Override
+    public void save(Car car) {
+        iCarRepository.save(car);
+    }
+
 
 }

@@ -11,5 +11,6 @@ export interface Car {
   carSeries?:CarSeries;
   origin?:string;
   numberOfSeats?:number;
+  img?:string;
 
 }

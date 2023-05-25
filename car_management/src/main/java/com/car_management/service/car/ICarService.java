@@ -17,4 +17,5 @@ public interface ICarService {
 
     List findAllCarType();
     List findAllCarSeries();
+    void save(Car car);
 }

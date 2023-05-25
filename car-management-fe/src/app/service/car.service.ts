@@ -14,8 +14,9 @@ export class CarService {
   constructor(private httpClient:HttpClient) { }
 
   findAllCar(page:number,idCarType:string,idCarSeries:string,nameCar:string):Observable<any>{
-    // return this.httpClient.get<CarDTO[]>('http://localhost:8080/api-Car/listCar?page=&idCarType=&idCarSeries=&nameCar=');
-    return this.httpClient.get<CarDTO[]>('http://localhost:8080/api-Car/listCar?page='+page+'&idCarType='+idCarSeries+'&idCarSeries='+idCarSeries+'&nameCar='+nameCar);
+    console.log("idkieuxe: "+idCarType)
+    return this.httpClient.get<CarDTO[]>('http://localhost:8080/api-Car/listCar?page='+page+'&idCarType='+idCarType+'&idCarSeries='+idCarSeries+'&nameCar='+nameCar);
+    // return this.httpClient.get<CarDTO[]>('http://localhost:8080/api-Car/listCar?page='+page+'&idCarType='+6+'&idCarSeries='+idCarSeries+'&nameCar='+nameCar);
   };
 
   findById(id: number):Observable<any> {

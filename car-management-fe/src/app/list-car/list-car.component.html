@@ -203,18 +203,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    /*justify-content: center;*/
     position: relative;
   }
-  .select-group::after {
-    content: "\f107";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    color: #EB0A1E;
-    position: absolute;
-    right: 19.5px;
-    bottom: 10px;
-  }
+  /*.select-group::after {*/
+  /*  content: "\f107";*/
+  /*  font-family: "Font Awesome 5 Free";*/
+  /*  font-weight: 900;*/
+  /*  color: #EB0A1E;*/
+  /*  position: absolute;*/
+  /*  right: 19.5px;*/
+  /*  bottom: 10px;*/
+  /*}*/
   .list-car-container .box-filter-product div {
     margin-right: 18px;
   }
@@ -424,46 +424,52 @@
   <div class="box-filter-product">
     <div class="select-group filter-item">
       <label for="car-seat" class="select-group-label">
-        <h3 class="select-group-label">Số chỗ ngồi </h3>
+        <h3 class="select-group-label">Dòng xe</h3>
       </label>
-      <select class="select-input" name="car-seat" id="car-seat">
-        <option value=" disabled selected">Chọn</option>
-        <option value="01" class="start-choose">BMW</option>
-        <option value="01" class="start-choose">zz</option>
-        <option value="01" class="start-choose">zzz</option>
-        <option value="01" class="start-choose">zz</option>
+      <select #idCarSeries class="select-input" name="car-seat" id="car-seat">
+        <option value=""selected>Chọn dòng xe</option>
+        <option *ngFor="let carSeries of listCarSeries" value="{{carSeries.id}}"  class="start-choose">{{carSeries.name}}</option>
       </select>
     </div>
 
-
-
-
-
-  </div>
-  <div class="box-product-contain-list-car">
-    <div class="product-contain-sort">
-      <div class="select-group">
-        <select class="select-input" name="car-sort" id="car-sort">
-          <option value="">Sắp xếp</option>
-          <option value="">Tất cả</option>
-          <option value="">Giá từ thấp tới cao</option>
-          <option value="">Giá từ cao tới thấp</option>
-        </select>
-      </div>
+    <div class="select-group filter-item">
+      <label for="car-seat" class="select-group-label">
+        <h3 class="select-group-label">Kiểu xe</h3>
+      </label>
+      <select #idCarType class="select-input" name="car-seat1" id="car-seat1">
+        <option value="" selected>Chọn kiểu xe</option>
+        <option  *ngFor="let carType of listCarType" value="{{carType.id}}" class="start-choose">{{carType.name}}</option>
+      </select>
     </div>
 
+    <div class="select-group">
+      <label for="car-seat" class="select-group-label">
+        <h3 class="select-group-label">Tên xe</h3>
+      </label>
+      <input #nameCar type="text" class="select-input">
+    </div>
+    <div class="select-group">
+      <label for="car-seat" class="select-group-label">
+        <h3 class="select-group-label" style="color: white">vhbjnkm</h3>
+      </label>
+      <button (click)="getListCar(0,idCarType.value,idCarSeries.value,nameCar.value)" class="btn btn-outline-success select-input" type="submit" style="background-color: #d81423;border-radius: 0;color: white">Tìm kiếm
+      </button>
+    </div>
+
+  </div>
+
+  <div class="box-product-contain-list-car">
+
     <div class="product-show-contain">
-      <div class=""></div>
-      <div class=""></div>
       <div class="row">
         <div *ngFor="let car of listCar" class="col-12 col-md-4 col-lg-4 product-show-item">
           <div class="box-product-item">
             <div class="product-item-image">
-              <a href="/corolla-altis-1-8v">
-                <img class="lazy"  src="{{car.url}}" alt="Corolla Altis 1.8V" />
-
-              </a>
+              <div [routerLink]="['/detail',car.id]" class="corolla-altis-1-8v">
+                <img style="width: 25rem" class="lazy"  src="{{car.url}}" alt="Corolla Altis 1.8V" />
+              </div>
             </div>
+            <br>
             <div class="product-item-content">
               <a href="/corolla-altis-1-8v">
                 <h2 class="content-title">{{car.name}}</h2>
@@ -482,9 +488,11 @@
               </a>
               <div class="content-product-compare">
                 <div>
-                  <a class="btn-custom-red" href="/du-toan-chi-phi?modelId=317&amp;gradeId=1913">
-                    <span>DỰ TOÁN</span>
-                  </a>
+                  <button (click)="addCart(car.id)" class="btn-custom-red">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
+  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+</svg></span>
+                  </button>
                 </div>
                 <div>
                   <a class="btn-custom-white" href="/so-sanh-xe?modelId=317&amp;&amp;gradeId=1913">
@@ -496,11 +504,70 @@
           </div>
         </div>
 
+
       </div>
     </div>
     <div></div>
   </div>
   <div class="product-pagination"></div>
+
+  <div style="margin-top: 12px">
+    <div *ngIf="teamPage" class="d-flex justify-content-center" id="last-row">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item" [ngClass]="teamPage.first ? 'disabled': ''">
+            <a role="button" class="page-link" (click)="changePage(0)">Trang đầu</a>
+          </li>
+          <li class="page-item" [ngClass]="teamPage.first ? 'disabled': ''">
+            <a role="button" class="page-link" (click)="changePage(teamPage.number - 1)"><</a>
+          </li>
+          <li class="page-item" *ngIf="teamPage.number - 3 > 0">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.number - 4)">{{teamPage.number - 3}}</a>
+          </li>
+          <li class="page-item" *ngIf="teamPage.number - 2 > 0">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.number - 3)">{{teamPage.number - 2}}</a>
+          </li>
+          <li class="page-item" *ngIf="teamPage.number - 1 > 0">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.number - 2)">{{teamPage.number - 1}}</a>
+          </li>
+          <li class="page-item" *ngIf="teamPage.number > 0">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.number - 1)">{{teamPage.number}}</a>
+          </li>
+          <li class="page-item active"><a class="page-link">{{teamPage.number + 1}}</a></li>
+          <li class="page-item" *ngIf="teamPage.number + 2 <= teamPage.totalPages">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.number + 1)">{{teamPage.number + 2}}</a>
+          </li>
+          <li class="page-item" *ngIf="teamPage.number + 3 <= teamPage.totalPages">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.number + 2)">{{teamPage.number + 3}}</a>
+          </li>
+          <li class="page-item" *ngIf="teamPage.number + 4 <= teamPage.totalPages">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.number + 3)">{{teamPage.number + 4}}</a>
+          </li>
+          <li class="page-item" *ngIf="teamPage.number + 5 <= teamPage.totalPages">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.number + 4)">{{teamPage.number + 5}}</a>
+          </li>
+          <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.number + 1)">></a>
+          </li>
+          <li class="page-item" [ngClass]="teamPage.last ? 'disabled': ''">
+            <a role="button" class="page-link"
+               (click)="changePage(teamPage.totalPages - 1)">
+              Trang cuối
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
 </div>
 <app-footer></app-footer>

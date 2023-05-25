@@ -21,7 +21,7 @@ export class AdminGuard implements CanActivate {
         return true;
       }
       else {
-        console.log("zzzzzzzzzzzzzzzzzzzzzzzz:",this.token.getUser().roles[0].authority)
+
 
         this.router.navigateByUrl('/error');
         return false;

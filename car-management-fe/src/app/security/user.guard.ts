@@ -15,7 +15,6 @@ export class UserGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.token.getToken()) {
-      debugger;
       if (this.token.getUser().roles[0].authority === 'ROLE_ADMIN' || this.token.getUser().roles[0].authority === 'ROLE_USER' && this.token.isLogger()) {
         return true;
       }

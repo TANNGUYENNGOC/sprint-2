@@ -24,7 +24,7 @@ public class CarRestController {
     private ICarService iCarService;
 
     @GetMapping("listCar")
-    public ResponseEntity<Page<ICarDTO>> getListCar(@PageableDefault(value = 8) Pageable pageable,
+    public ResponseEntity<Page<ICarDTO>> getListCar(@PageableDefault(value = 6) Pageable pageable,
                                                     @RequestParam(defaultValue = "") String idCarType,
                                                     @RequestParam(defaultValue = "") String idCarSeries,
                                                     @RequestParam(defaultValue = "") String nameCar){

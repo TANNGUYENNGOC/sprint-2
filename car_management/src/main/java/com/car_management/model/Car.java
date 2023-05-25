@@ -18,6 +18,10 @@ public class Car {
     private String origin; //Xuất sứ
     private int numberOfSeats; //Số chỗ ngồi
 
+    private int quantity; //Số lượng
+
+    private String img;
+
     public Car() {
     }
 
@@ -102,5 +106,21 @@ public class Car {
 
     public void setNumberOfSeats(int numberOfSeats) {
         this.numberOfSeats = numberOfSeats;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
