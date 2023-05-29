@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TokenStorageService} from "./token-storage.service";
 import {CartDTO} from "../dto/cart-dto";
+import {IOderDetailDTO} from "../dto/ioder-detail-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +15,20 @@ export class CartService {
 
   getAllCart(page:number):Observable<any> {
     let idCustomer:number = this.tokenStorageService.getUser().idUser;
-    return this.httpClient.get<CartDTO[]>('http://localhost:8080/api-Cart/lisCart?page='+page+'&idCustomer='+idCustomer);
+    return this.httpClient.get<IOderDetailDTO[]>('http://localhost:8080/api-Cart/lisCart?page='+page+'&idCustomer='+idCustomer);
   }
 
   addCart(cartDTO:CartDTO):Observable<any>{
+    console.log(cartDTO)
     return this.httpClient.post<CartDTO>('http://localhost:8080/api-Cart/addCart',cartDTO);
   }
 
   deleteCart(cartDTO:CartDTO):Observable<any>{
     return this.httpClient.post<CartDTO>('http://localhost:8080/api-Cart/deleteCart',cartDTO);
+  }
+
+  getSumPrice(){
+    let idCustomer:number = this.tokenStorageService.getUser().idUser;
+    return this.httpClient.get<CartDTO>('http://localhost:8080/api-order-detail/addition?idCustomer='+idCustomer);
   }
 }

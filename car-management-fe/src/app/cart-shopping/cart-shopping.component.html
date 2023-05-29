@@ -34,14 +34,14 @@
                       </svg>
                       </button>
                       <p class="m-0">{{cart.numberOfVehicles}}</p>
-                      <button (click)="deleteCarCart(cart.carId)" class="btn btn-link px-2"                       >
+                      <button (click)="deleteCarCart(cart.carId,cart.numberOfVehicles)" class="btn btn-link px-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
                           <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2.5 7.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1z"/>
                         </svg>
                       </button>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0">€ 44.00</h6>
+<!--                      <h6 class="mb-0">{{cart.sumPrice}}</h6>-->
                     </div>
                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                       <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
@@ -118,7 +118,7 @@
 
                   <div class="d-flex justify-content-between mb-4">
                     <h5 class="text-uppercase">items 3</h5>
-                    <h5>€ 132.00</h5>
+<!--                    <h5>€ {{icartDTO.sumPrice}}</h5>-->
                   </div>
 
                   <h5 class="text-uppercase mb-3">Shipping</h5>

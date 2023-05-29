@@ -8,4 +8,5 @@ public interface ICartDTO {
     String getCarSeries();
     String getImg();
     Integer getNumberOfVehicles();
+    Double getSumPrice();
 }

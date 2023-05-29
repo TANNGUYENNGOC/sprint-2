@@ -2,6 +2,7 @@ package com.car_management.service.cart;
 
 import com.car_management.dto.cart.CartDTO;
 import com.car_management.dto.cart.ICartDTO;
+import com.car_management.dto.oder.OderDTO;
 import com.car_management.model.Cart;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,13 @@ public interface ICartService {
     Cart findById(Integer id);
 
     ICartDTO checkForExistence(Integer idCustomer,Integer idCar);
+
+    void deleteById(Integer id);
+
+    ICartDTO getSumPrice(Integer idCustomer);
+
+    Integer totalOderCustomer(Integer idCustomer);
+
 
 
 

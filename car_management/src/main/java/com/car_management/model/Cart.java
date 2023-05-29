@@ -19,6 +19,7 @@ public class Cart {
     private String createDate;
     private String datePay;
     private String updateDate;
+    private double sumPrice;
 
     public Cart() {
     }
@@ -111,5 +112,13 @@ public class Cart {
 
     public void setUpdateDate(String updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public double getSumPrice() {
+        return sumPrice;
+    }
+
+    public void setSumPrice(double sumPrice) {
+        this.sumPrice = sumPrice;
     }
 }

@@ -2,6 +2,7 @@ package com.car_management.service.cart;
 
 import com.car_management.dto.cart.CartDTO;
 import com.car_management.dto.cart.ICartDTO;
+import com.car_management.dto.oder.OderDTO;
 import com.car_management.repository.ICartRepository;
 import com.car_management.model.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class CartServiceImpl implements ICartService {
 
     @Override
     public void addCart(CartDTO cartDTO) {
-        iCartRepository.addCart(cartDTO.getCarId(),cartDTO.getUserId());
+        iCartRepository.addCart(cartDTO.getCarId(),cartDTO.getUserId(),cartDTO.getSumPrice());
     }
 
     @Override
@@ -38,6 +39,21 @@ public class CartServiceImpl implements ICartService {
     @Override
     public ICartDTO checkForExistence(Integer idCustomer, Integer idCar) {
         return iCartRepository.checkForExistence(idCustomer,idCar);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        iCartRepository.deleteById(id);
+    }
+
+    @Override
+    public ICartDTO getSumPrice(Integer idCustomer) {
+        return iCartRepository.getSumPrice(idCustomer);
+    }
+
+    @Override
+    public Integer totalOderCustomer(Integer idCustomer) {
+        return iCartRepository.totalOderCustomer(idCustomer);
     }
 
 }

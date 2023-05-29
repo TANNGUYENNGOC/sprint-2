@@ -75,7 +75,7 @@ export class ListCarComponent implements OnInit {
       userId: this.tokenStorageService.getUser().idUser
     }
     this.cartService.addCart(cartDTO).subscribe(next=>{
-
+      console.log(cartDTO)
     })
   }
 }

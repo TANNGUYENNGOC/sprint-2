@@ -22,4 +22,7 @@ public interface IUserService {
     void updateOtp(User user);
     List<User> getAll();
     void save(User user);
+
+    //Tấn thêm vào
+    User findById(Integer id);
 }
