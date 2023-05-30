@@ -4,6 +4,7 @@ import com.car_management.dto.cart.CartDTO;
 import com.car_management.dto.cart.ICartDTO;
 import com.car_management.dto.oder.IOderDTO;
 import com.car_management.dto.oder.OderDTO;
+import com.car_management.dto.oder_detail.IOderDetailDTO1;
 import com.car_management.model.Car;
 import com.car_management.model.Cart;
 import com.car_management.model.Orders;
@@ -65,7 +66,7 @@ public class CartRestController {
                 IOderDTO iOderDTO = iOderService.getOrder(cartDTO.getUserId());
                 double price = iCartService.getSumPrice(cartDTO.getUserId()).getSumPrice();
                 Integer totalAll = iCartService.totalOderCustomer(cartDTO.getUserId());
-                iOderService.updateOrderDetail(totalAll,price,iOderDTO.getId());
+                iOderService.updateOrderDetail(totalAll, price, iOderDTO.getId());
 
                 return new ResponseEntity(HttpStatus.OK);
             }
@@ -76,7 +77,7 @@ public class CartRestController {
             iCartService.addCart(cartDTO);
 
             IOderDTO iOderDTO = iOderService.findByIdCustomerOder(cartDTO.getUserId());
-            if (iOderDTO==null){
+            if (iOderDTO == null) {
                 //Thêm vào orders
 //                int maxId = iOderService.idMax();
                 int userId = cartDTO.getUserId();
@@ -87,12 +88,18 @@ public class CartRestController {
                 IOderDTO iOderDTO1 = iOderService.getOrder(cartDTO.getUserId());
                 double price = iCartService.getSumPrice(cartDTO.getUserId()).getSumPrice();
                 Integer totalAll = iCartService.totalOderCustomer(cartDTO.getUserId());
-                iOderService.addOrderDetail(iOderDTO1.getId(),totalAll,price);
+                iOderService.addOrderDetail(iOderDTO1.getId(), totalAll, price);
 
             } else {
-                int maxId = iOderService.idMax();
-                int totalOrder = iCartService.totalOderCustomer(maxId);
-                iOderService.updateOder(totalOrder,cartDTO.getUserId());
+//                int maxId = iOderService.idMax();
+                int totalOrder = iCartService.totalOderCustomer(cartDTO.getUserId());
+                iOderService.updateOder(totalOrder, cartDTO.getUserId());
+
+                //Update lại order_detail
+                IOderDTO iOderDTO1 = iOderService.getOrder(cartDTO.getUserId());
+                double price = iCartService.getSumPrice(cartDTO.getUserId()).getSumPrice();
+                Integer totalAll = iCartService.totalOderCustomer(cartDTO.getUserId());
+                iOderService.updateOrderDetail(totalAll, price, iOderDTO1.getId());
             }
 
         }
@@ -105,15 +112,26 @@ public class CartRestController {
         if (iCartDTO != null) {
             Cart cart = iCartService.findById(iCartDTO.getId());
             Car car = iCarService.findById(cart.getCar().getId());
-            if (cart.getNumberOfVehicles() <= 0) {
+            if (cart.getNumberOfVehicles() < 0) {
                 return new ResponseEntity(HttpStatus.BAD_REQUEST);
             } else {
                 cart.setNumberOfVehicles(cart.getNumberOfVehicles() - 1);
                 iCartService.save(cart);
                 if (cart.getNumberOfVehicles() == 0) {
                     iCartService.deleteById(cart.getId());
-                    int totalOder = iCartService.totalOderCustomer(cartDTO.getUserId());
-                    iOderService.updateOder(totalOder, cartDTO.getUserId());
+//                    int totalOder = iCartService.totalOderCustomer(cartDTO.getUserId());
+                    Integer totalAll = iCartService.totalOderCustomer(cartDTO.getUserId());
+
+                    if (totalAll == null) {
+                        IOderDetailDTO1 iOderDetailDTO1 = iOderService.selectOrderDetaiByIdCustomer(cartDTO.getUserId());
+                        iOderService.deleteOrdersDetail(iOderDetailDTO1.getOrdersId());
+                        iOderService.deleteOrder(cartDTO.getUserId());
+                    } else {
+                        //Update lại order_detail
+                        IOderDTO iOderDTO1 = iOderService.getOrder(cartDTO.getUserId());
+                        double price = iCartService.getSumPrice(cartDTO.getUserId()).getSumPrice();
+                        iOderService.updateOrderDetail(totalAll, price, iOderDTO1.getId());
+                    }
                 } else {
                     car.setQuantity(car.getQuantity() + 1);
                     iCarService.save(car);
@@ -127,18 +145,19 @@ public class CartRestController {
                     IOderDTO iOderDTO = iOderService.getOrder(cartDTO.getUserId());
                     double price = iCartService.getSumPrice(cartDTO.getUserId()).getSumPrice();
                     Integer totalAll = iCartService.totalOderCustomer(cartDTO.getUserId());
-                    iOderService.updateOrderDetail(totalAll,price,iOderDTO.getId());
-                }
+                    iOderService.updateOrderDetail(totalAll, price, iOderDTO.getId());
 
+                }
                 return new ResponseEntity(HttpStatus.OK);
+
             }
         }
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("getSumPrice")
-    public ResponseEntity<ICartDTO> getSumPrice(@RequestParam() Integer idCustomer) {
-        ICartDTO iCartDTO = iCartService.getSumPrice(idCustomer);
-        return new ResponseEntity<>(iCartDTO, HttpStatus.OK);
+    @GetMapping("oderDetail")
+    public ResponseEntity<IOderDetailDTO1> getOderDetail(@RequestParam() Integer idCustomer) {
+        IOderDetailDTO1 iOderDetailDTO1 = iOderService.selectOrderDetaiByIdCustomer(idCustomer);
+        return new ResponseEntity<>(iOderDetailDTO1, HttpStatus.OK);
     }
 }

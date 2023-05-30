@@ -3,6 +3,7 @@ package com.car_management.repository;
 import com.car_management.dto.oder.IOderDTO;
 import com.car_management.dto.oder.OderDTO;
 import com.car_management.dto.oder_detail.IOderDetailDTO;
+import com.car_management.dto.oder_detail.IOderDetailDTO1;
 import com.car_management.model.Orders;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -78,4 +79,23 @@ public interface IOderRepository extends JpaRepository<Orders,Integer> {
     @Query(value = "update oder_detail set quantity = :quantity,price = :price where orders_id = :orderId",
     nativeQuery = true)
     void updateOrderDetail(@Param("quantity")Integer quantity,@Param("price") Double price,@Param("orderId") Integer orderId);
+
+    //thông tin này dùng để thực hiện chức năng thanh toán
+    @Query(value = "select oder_detail.id,oder_detail.price,oder_detail.quantity,orders_id as ordersId from oder_detail join orders o on oder_detail.orders_id = o.id where o.user_id = :idCustomer",
+    countQuery = "select oder_detail.id,oder_detail.price,oder_detail.quantity,orders_id as ordersId from oder_detail join orders o on oder_detail.orders_id = o.id where o.user_id = :idCustomer",
+    nativeQuery = true)
+    IOderDetailDTO1 selectOrderDetaiByIdCustomer(@Param("idCustomer") Integer idCustomer);
+
+    //Xóa oder_detail
+    @Transactional
+    @Modifying
+    @Query(value = "delete from oder_detail where orders_id = :idOderDetail",
+    nativeQuery = true)
+    void deleteOrdersDetail(@Param("idOderDetail") Integer idOderDetail);
+    //Xóa oder
+    @Transactional
+    @Modifying
+    @Query(value = "delete from orders where user_id = :idUser",
+    nativeQuery = true)
+    void deleteOrder(@Param("idUser")Integer idUser);
 }

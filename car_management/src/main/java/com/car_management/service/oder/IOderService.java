@@ -3,6 +3,7 @@ package com.car_management.service.oder;
 import com.car_management.dto.oder.IOderDTO;
 import com.car_management.dto.oder.OderDTO;
 import com.car_management.dto.oder_detail.IOderDetailDTO;
+import com.car_management.dto.oder_detail.IOderDetailDTO1;
 import com.car_management.model.Orders;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,13 @@ public interface IOderService {
     void addOrderDetail(Integer orderId,Integer quantity,Double price);
 
     void updateOrderDetail(Integer quantity,@Param("price") Double price,@Param("orderId") Integer orderId);
+    IOderDetailDTO1 selectOrderDetaiByIdCustomer(Integer idCustomer);
+
+    void deleteOrdersDetail(Integer idOderDetail);
+    void deleteOrder(Integer idUser);
+
+
+
 
 
 

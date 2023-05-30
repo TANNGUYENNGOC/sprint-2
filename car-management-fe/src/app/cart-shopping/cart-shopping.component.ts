@@ -5,6 +5,7 @@ import {ProjectJson} from "../model/project-json";
 import {TokenStorageService} from "../service/token-storage.service";
 import Swal from "sweetalert2";
 import {IOderDetailDTO} from "../dto/ioder-detail-dto";
+import {OrderDetailDTO} from "../dto/order-detail-dto";
 
 @Component({
   selector: 'app-cart-shopping',
@@ -16,7 +17,7 @@ export class CartShoppingComponent implements OnInit {
   teamPage: ProjectJson;
   page: number = 0;
 
-  icartDTO:CartDTO;
+  orderDetail: OrderDetailDTO;
 
   constructor(private cartService: CartService,
               private tokenStorageService: TokenStorageService) {
@@ -24,12 +25,12 @@ export class CartShoppingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCart(this.page);
-    this.getSumPrice();
+ this.getOrderDetail();
   }
-getSumPrice(){
-    this.cartService.getSumPrice().subscribe(next=>{
-      this.icartDTO = next;
-    })
+getOrderDetail(){
+ this.cartService.getOrderDetail().subscribe(next=>{
+   this.orderDetail = next;
+ })
 }
 
   getAllCart(page: number,) {
@@ -52,6 +53,9 @@ getSumPrice(){
     }
     this.cartService.addCart(cartDTO).subscribe(next => {
       this.getAllCart(this.page);
+      this.getOrderDetail();
+
+
     }, error => {
       Swal.fire({
         icon: 'error',
@@ -71,6 +75,7 @@ getSumPrice(){
       }
       this.cartService.deleteCart(cartDTO).subscribe(next => {
         this.getAllCart(this.page);
+        this.getOrderDetail();
       })
 
     } else if (numberOfVehicles == 1 && Swal.fire({
@@ -90,6 +95,7 @@ getSumPrice(){
         }
         this.cartService.deleteCart(cartDTO).subscribe(next => {
           this.getAllCart(this.page);
+          this.getOrderDetail();
         }, error => {
           Swal.fire({
             icon: 'error',

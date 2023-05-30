@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {TokenStorageService} from "./token-storage.service";
 import {CartDTO} from "../dto/cart-dto";
 import {IOderDetailDTO} from "../dto/ioder-detail-dto";
+import {OrderDetailDTO} from "../dto/order-detail-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class CartService {
     return this.httpClient.post<CartDTO>('http://localhost:8080/api-Cart/deleteCart',cartDTO);
   }
 
-  getSumPrice(){
+  getOrderDetail(){
     let idCustomer:number = this.tokenStorageService.getUser().idUser;
-    return this.httpClient.get<CartDTO>('http://localhost:8080/api-order-detail/addition?idCustomer='+idCustomer);
+    return this.httpClient.get<OrderDetailDTO>('http://localhost:8080/api-Cart/oderDetail?idCustomer='+idCustomer);
   }
 }
