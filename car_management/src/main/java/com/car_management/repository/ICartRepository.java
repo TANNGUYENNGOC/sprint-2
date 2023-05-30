@@ -12,15 +12,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface ICartRepository extends JpaRepository<Cart,Integer> {
-    @Query(value = "select cart.id,c.id as carId,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img,cart.sum_price as sumPrice from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and cart.number_of_vehicles > 0",
-    countQuery = "select cart.id,c.id as carId,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img,cart.sum_price as sumPrice from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and cart.number_of_vehicles > 0",
+    @Query(value = "select cart.id,c.id as carId,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img,cart.sum_price as sumPrice from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and cart.number_of_vehicles > 0 and status = false",
+    countQuery = "select cart.id,c.id as carId,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img,cart.sum_price as sumPrice from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and cart.number_of_vehicles > 0 and status = false",
     nativeQuery = true)
     Page<ICartDTO> cartList(@Param("idCustomer") int idCustomer, Pageable pageable);
 
 
     //Kiểm tra mặt hàng có tồn tại trong giỏ hàng hay chưa
-    @Query(value = "select cart.id,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and c.id = :idCar",
-    countQuery = "select cart.id,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and c.id = :idCar",
+    @Query(value = "select cart.id,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and c.id = :idCar and cart.flag = false",
+    countQuery = "select cart.id,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and c.id = :idCar and cart.flag = false",
     nativeQuery = true)
     ICartDTO checkForExistence(@Param("idCustomer")Integer idCustomer, @Param("idCar") Integer idCar);
 
@@ -32,16 +32,16 @@ public interface ICartRepository extends JpaRepository<Cart,Integer> {
 
 
     //Lấy ra giá tổng sản phầm của 1 khách hàng
-    @Query(value = "select sum(cart.sum_price) as sumPrice from cart join user u on u.id = cart.user_id where u.id = :idCustomer",
-    countQuery = "select sum(cart.sum_price) as sumPrice from cart join user u on u.id = cart.user_id where u.id = :idCustomer",
+    @Query(value = "select sum(cart.sum_price) as sumPrice from cart join user u on u.id = cart.user_id where u.id = :idCustomer and cart.status = false",
+    countQuery = "select sum(cart.sum_price) as sumPrice from cart join user u on u.id = cart.user_id where u.id = :idCustomer and cart.status = false",
     nativeQuery = true)
     ICartDTO getSumPrice(@Param("idCustomer") Integer idCustomer);
 
 
 
     //Lấy ra số lượng sản phẩm của khách hangg
-    @Query(value = "select sum(cart.number_of_vehicles) as totalOder from cart join user u on u.id = cart.user_id where user_id=:idCustomer",
-    countQuery = "select sum(cart.number_of_vehicles) as totalOder from cart join user u on u.id = cart.user_id where user_id=:idCustomer",
+    @Query(value = "select sum(cart.number_of_vehicles) as totalOder from cart join user u on u.id = cart.user_id where user_id=:idCustomer and cart.status = false ",
+    countQuery = "select sum(cart.number_of_vehicles) as totalOder from cart join user u on u.id = cart.user_id where user_id=:idCustomer and cart.status = false ",
     nativeQuery = true)
     Integer totalOderCustomer(@Param("idCustomer") Integer idCustomer);
 }

@@ -15,14 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface IOderRepository extends JpaRepository<Orders,Integer> {
     //Lấy ra số lượng sản phẩm của khách hàng
-    @Query(value = "select sum(cart.number_of_vehicles) as totalOder from cart join user u on u.id = cart.user_id where user_id=:idCustomer",
-            countQuery = "select sum(cart.number_of_vehicles) as totalOder from cart join user u on u.id = cart.user_id where user_id=:idCustomer",
+    @Query(value = "select sum(cart.number_of_vehicles) as totalOder from cart join user u on u.id = cart.user_id where user_id=:idCustomer and cart.status = false",
+            countQuery = "select sum(cart.number_of_vehicles) as totalOder from cart join user u on u.id = cart.user_id where user_id=:idCustomer and cart.status = false",
             nativeQuery = true)
     OderDTO totalOderCustomer(@Param("idCustomer") Integer idCustomer);
 
     //Lấy ra oders
-    @Query(value = "select orders.id,orders.total_oder,orders.user_id from orders where user_id = :idCustomer",
-    countQuery = "select orders.id,orders.total_oder,orders.user_id from orders where user_id = :idCustomer",
+    @Query(value = "select orders.id,orders.total_oder,orders.user_id from orders where user_id = :idCustomer and orders.flag = false",
+    countQuery = "select orders.id,orders.total_oder,orders.user_id from orders where user_id = :idCustomer and orders.flag = false",
     nativeQuery = true)
     IOderDTO findByIdCustomerOder(@Param("idCustomer") Integer idCustomer);
 
@@ -51,8 +51,8 @@ public interface IOderRepository extends JpaRepository<Orders,Integer> {
             nativeQuery = true)
     Page<IOderDetailDTO> getOrderDetail(@Param("idUser") Integer idUser, Pageable pageable);
     //Kiểm tra tồn tại order bằng idUser
-    @Query(value = "select id,modify_date as modifyDate, total_oder as totalOder,user_id as idUser,create_date as createDate from orders where user_id = :idCustomer",
-    countQuery = "select id,modify_date as modifyDate, total_oder as totalOder,user_id as idUser,create_date as createDate from orders where user_id = :idCustomer",
+    @Query(value = "select id,modify_date as modifyDate, total_oder as totalOder,user_id as idUser,create_date as createDate from orders where user_id = :idCustomer and orders.flag = false",
+    countQuery = "select id,modify_date as modifyDate, total_oder as totalOder,user_id as idUser,create_date as createDate from orders where user_id = :idCustomer and orders.flag = false",
     nativeQuery = true)
     IOderDTO getOrder(@Param("idCustomer") Integer idCustomer);
     //Inser vào order khi khách hàng chưa có giỏ hàng
@@ -81,8 +81,8 @@ public interface IOderRepository extends JpaRepository<Orders,Integer> {
     void updateOrderDetail(@Param("quantity")Integer quantity,@Param("price") Double price,@Param("orderId") Integer orderId);
 
     //thông tin này dùng để thực hiện chức năng thanh toán
-    @Query(value = "select oder_detail.id,oder_detail.price,oder_detail.quantity,orders_id as ordersId from oder_detail join orders o on oder_detail.orders_id = o.id where o.user_id = :idCustomer",
-    countQuery = "select oder_detail.id,oder_detail.price,oder_detail.quantity,orders_id as ordersId from oder_detail join orders o on oder_detail.orders_id = o.id where o.user_id = :idCustomer",
+    @Query(value = "select oder_detail.id,oder_detail.price,oder_detail.quantity,orders_id as ordersId from oder_detail join orders o on oder_detail.orders_id = o.id where o.user_id = :idCustomer and oder_detail.flag = false",
+    countQuery = "select oder_detail.id,oder_detail.price,oder_detail.quantity,orders_id as ordersId from oder_detail join orders o on oder_detail.orders_id = o.id where o.user_id = :idCustomer and oder_detail.flag = false",
     nativeQuery = true)
     IOderDetailDTO1 selectOrderDetaiByIdCustomer(@Param("idCustomer") Integer idCustomer);
 
@@ -98,4 +98,23 @@ public interface IOderRepository extends JpaRepository<Orders,Integer> {
     @Query(value = "delete from orders where user_id = :idUser",
     nativeQuery = true)
     void deleteOrder(@Param("idUser")Integer idUser);
+
+    //3 phương thức dùng để thanh toán
+    @Transactional
+    @Modifying
+    @Query(value = "update cart set status = 1 where user_id = :idCustomer",
+    nativeQuery = true)
+    void payCart(@Param("idCustomer") Integer idCustomer);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update orders set flag = 1 where user_id = :idCustomer",
+    nativeQuery = true)
+    void payOrders(@Param("idCustomer") Integer idCustomer);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update oder_detail set flag = 1 where orders_id = :idOrder",
+    nativeQuery = true)
+    void payOrderDetail(@Param("idOrder") Integer idOrder);
 }

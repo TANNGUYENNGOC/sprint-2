@@ -102,5 +102,18 @@ public class OderServiceImpl implements IOderService {
         iOderRepository.deleteOrder(idUser);
     }
 
+    @Override
+    public void payCart(Integer idCustomer) {
+        iOderRepository.payCart(idCustomer);
+    }
 
+    @Override
+    public void payOrders(Integer idCustomer) {
+        iOderRepository.payOrders(idCustomer);
+    }
+
+    @Override
+    public void payOrderDetail(Integer idOrder) {
+        iOderRepository.payOrderDetail(idOrder);
+    }
 }

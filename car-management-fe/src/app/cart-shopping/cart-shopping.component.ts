@@ -38,11 +38,35 @@ getOrderDetail(){
       this.cartList = next.content;
       this.teamPage = next;
       // console.log(this.cartList)
+    },error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Không có sản phẩm trong giỏ hàng',
+        footer: '<a href="">Why do I have this issue?</a>'
+      })
     })
   }
 
   changePage(page: number) {
     this.getAllCart(page);
+  }
+
+  pay(){
+    // @ts-ignore
+    let cartDTO: CartDTO = {
+      carId: 0,
+      userId: this.tokenStorageService.getUser().idUser
+    }
+    this.cartService.payToCart(cartDTO).subscribe(next=>{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Thanh toán thành công',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
   }
 
   addCarCart(idCar: number) {

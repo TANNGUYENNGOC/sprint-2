@@ -28,8 +28,13 @@ export class CartService {
     return this.httpClient.post<CartDTO>('http://localhost:8080/api-Cart/deleteCart',cartDTO);
   }
 
-  getOrderDetail(){
+  getOrderDetail():Observable<any>{
     let idCustomer:number = this.tokenStorageService.getUser().idUser;
     return this.httpClient.get<OrderDetailDTO>('http://localhost:8080/api-Cart/oderDetail?idCustomer='+idCustomer);
+  }
+
+  payToCart(cartDTO:CartDTO):Observable<any>{
+    console.log(cartDTO)
+    return this.httpClient.post<CartDTO>('http://localhost:8080/api-Cart/payCart',cartDTO);
   }
 }

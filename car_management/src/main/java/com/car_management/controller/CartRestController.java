@@ -59,9 +59,12 @@ public class CartRestController {
                 iCartService.save(cart);
 
 //                Lấy số lượng sản phẩm của 1 khách hàng, thao tác với oder
-                int totalOder = iCartService.totalOderCustomer(cartDTO.getUserId());
-                iOderService.updateOder(totalOder, cartDTO.getUserId());
-
+                Integer totalOder = iCartService.totalOderCustomer(cartDTO.getUserId());
+                if (totalOder == null){
+                    iOderService.updateOder(1, cartDTO.getUserId());
+                }else {
+                    iOderService.updateOder(totalOder, cartDTO.getUserId());
+                }
                 //update lại order_detail
                 IOderDTO iOderDTO = iOderService.getOrder(cartDTO.getUserId());
                 double price = iCartService.getSumPrice(cartDTO.getUserId()).getSumPrice();
@@ -159,5 +162,14 @@ public class CartRestController {
     public ResponseEntity<IOderDetailDTO1> getOderDetail(@RequestParam() Integer idCustomer) {
         IOderDetailDTO1 iOderDetailDTO1 = iOderService.selectOrderDetaiByIdCustomer(idCustomer);
         return new ResponseEntity<>(iOderDetailDTO1, HttpStatus.OK);
+    }
+
+    @PostMapping("payCart")
+    public ResponseEntity payCart(@RequestBody CartDTO cartDTO){
+        iOderService.payCart(cartDTO.getUserId());
+        iOderService.payOrders(cartDTO.getUserId());
+        IOderDetailDTO1 iOderDetailDTO1 = iOderService.selectOrderDetaiByIdCustomer(cartDTO.getUserId());
+        iOderService.payOrderDetail(iOderDetailDTO1.getOrdersId());
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

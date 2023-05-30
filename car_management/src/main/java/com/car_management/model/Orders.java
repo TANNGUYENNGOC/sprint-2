@@ -14,6 +14,7 @@ public class Orders {
     private int totalOder;
     private String createDate;
     private String modifyDate;
+    private boolean flag;
 
     public Orders() {
     }
@@ -61,5 +62,13 @@ public class Orders {
 
     public void setModifyDate(String modifyDate) {
         this.modifyDate = modifyDate;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
 }
