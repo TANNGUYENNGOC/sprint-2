@@ -12,6 +12,8 @@ import {CartManagementComponent} from "./cart-management/cart-management.compone
 import {AddCommand} from "@angular/cli/commands/add-impl";
 import {AdminGuard} from "./security/admin.guard";
 import {UserGuard} from "./security/user.guard";
+import {PersonalInformationComponent} from "./personal-information/personal-information.component";
+import {HistoryComponent} from "./history/history.component";
 
 
 const routes: Routes = [
@@ -21,6 +23,8 @@ const routes: Routes = [
   {path: 'detail/:id', component: DetailComponent},
   {path: 'list-car', component: ListCarComponent},
   {path: 'register-an-account', component: RegisterAnAccountComponent},
+  {path:'information-person', component: PersonalInformationComponent},
+  {path:'history',component:HistoryComponent},
 
   {canActivate: [UserGuard]
     ,path: 'cart-shopping', component: CartShoppingComponent},

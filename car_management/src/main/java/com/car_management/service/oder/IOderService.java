@@ -1,5 +1,6 @@
 package com.car_management.service.oder;
 
+import com.car_management.dto.history.IHistoryDTO;
 import com.car_management.dto.oder.IOderDTO;
 import com.car_management.dto.oder.OderDTO;
 import com.car_management.dto.oder_detail.IOderDetailDTO;
@@ -46,9 +47,12 @@ public interface IOderService {
 
     void payCart(Integer idCustomer);
 
-    void payOrders(Integer idCustomer);
+    void payOrders(Integer idCustomer,String modifyDate);
 
     void payOrderDetail(Integer idOrder);
+
+    Page<IHistoryDTO> getHistory(Integer idCustomer, Pageable pageable);
+
 
 
 }

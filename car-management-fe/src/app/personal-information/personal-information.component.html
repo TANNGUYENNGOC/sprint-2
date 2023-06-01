@@ -1,0 +1,84 @@
+<app-header></app-header>
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="{{user.avatar}}" alt="avatar"
+                 class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">{{user.name}}</h5>
+            <p class="text-muted mb-1">Full Stack Developer</p>
+            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+            <div class="d-flex justify-content-center mb-2">
+              <button type="button" class="btn btn-primary">Follow</button>
+              <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tên: </p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.name}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Giới tính: </p>
+              </div>
+              <div class="col-sm-9">
+                <p *ngIf="user.gender==true" class="text-muted mb-0">Nam</p>
+                <p *ngIf="user.gender==false" class="text-muted mb-0">Nữ</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Ngày sinh: </p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.dateOfBirth}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Số điện thoại</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.phoneNumber}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Địa chỉ:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.address}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Tên tài khoản:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.userName}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

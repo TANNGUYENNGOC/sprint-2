@@ -2,6 +2,7 @@ package com.car_management.repository;
 
 import com.car_management.dto.cart.ICartDTO;
 import com.car_management.dto.oder.OderDTO;
+import com.car_management.model.Car;
 import com.car_management.model.Cart;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,8 +20,8 @@ public interface ICartRepository extends JpaRepository<Cart,Integer> {
 
 
     //Kiểm tra mặt hàng có tồn tại trong giỏ hàng hay chưa
-    @Query(value = "select cart.id,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and c.id = :idCar and cart.flag = false",
-    countQuery = "select cart.id,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and c.id = :idCar and cart.flag = false",
+    @Query(value = "select cart.id,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and c.id = :idCar and cart.status = false",
+    countQuery = "select cart.id,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and c.id = :idCar and cart.status = false",
     nativeQuery = true)
     ICartDTO checkForExistence(@Param("idCustomer")Integer idCustomer, @Param("idCar") Integer idCar);
 
@@ -44,4 +45,6 @@ public interface ICartRepository extends JpaRepository<Cart,Integer> {
     countQuery = "select sum(cart.number_of_vehicles) as totalOder from cart join user u on u.id = cart.user_id where user_id=:idCustomer and cart.status = false ",
     nativeQuery = true)
     Integer totalOderCustomer(@Param("idCustomer") Integer idCustomer);
+
+//    Cart findCartByStatus
 }

@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
               private router: Router) {
   }
 
+  user: any = this.tokenStorageService.getUser();
+
   ngOnInit(): void {
     this.checkLogIn();
   }

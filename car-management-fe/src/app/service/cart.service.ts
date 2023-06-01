@@ -5,6 +5,7 @@ import {TokenStorageService} from "./token-storage.service";
 import {CartDTO} from "../dto/cart-dto";
 import {IOderDetailDTO} from "../dto/ioder-detail-dto";
 import {OrderDetailDTO} from "../dto/order-detail-dto";
+import {CartDTO1} from "../dto/cart-dto1";
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,20 @@ export class CartService {
   payToCart(cartDTO:CartDTO):Observable<any>{
     console.log(cartDTO)
     return this.httpClient.post<CartDTO>('http://localhost:8080/api-Cart/payCart',cartDTO);
+  }
+
+  deleteOneRecordCart(cart: IOderDetailDTO):Observable<any>{
+    let cartDTO1:CartDTO1 = {
+      id: cart.id,
+      carId: cart.carId,
+      carName:cart.carName,
+      carType:cart.carType,
+      carSeries:cart.carSeries,
+      img:cart.img,
+      numberOfVehicles:cart.numberOfVehicles,
+      sumPrice: cart.sumPrice
+    };
+    let idCustomer:number = this.tokenStorageService.getUser().idUser;
+    return this.httpClient.post<CartDTO1>('http://localhost:8080/api-Cart/deleteOneRecordCart?idCustomer='+idCustomer,cartDTO1);
   }
 }

@@ -7,6 +7,8 @@ import {CarSeries} from "../model/car-series";
 import {CartService} from "../service/cart.service";
 import {CartDTO} from "../dto/cart-dto";
 import {TokenStorageService} from "../service/token-storage.service";
+import {render} from "creditcardpayments/creditCardPayments";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-list-car',
@@ -27,7 +29,9 @@ export class ListCarComponent implements OnInit {
 
   constructor(private carService: CarService,
               private cartService: CartService,
-              private tokenStorageService:TokenStorageService) {
+              private tokenStorageService: TokenStorageService) {
+
+
   }
 
   ngOnInit(): void {
@@ -45,9 +49,14 @@ export class ListCarComponent implements OnInit {
     console.log("idCarSeries: " + idCarSeries)
     console.log("nameCar: " + nameCar)
     this.carService.findAllCar(page, this.idCarType, this.idCarSeries, this.nameCar).subscribe(next => {
-      this.listCar = next.content;
-      this.teamPage = next;
-    })
+        this.listCar = next.content;
+        this.teamPage = next;
+      },
+      error => {
+        console.log(error)
+      });
+
+
   }
 
   changePage(page: number) {
@@ -74,8 +83,21 @@ export class ListCarComponent implements OnInit {
       carId: idCar,
       userId: this.tokenStorageService.getUser().idUser
     }
-    this.cartService.addCart(cartDTO).subscribe(next=>{
-      console.log(cartDTO)
+    this.cartService.addCart(cartDTO).subscribe(next => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Thêm thành công vào giỏ hàng',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }, error => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Hết hàng',
+        text: 'Vui lòng chọn sản phẩm khác',
+      })
     })
   }
+
+
 }

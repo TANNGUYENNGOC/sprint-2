@@ -15,6 +15,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { ListCarComponent } from './list-car/list-car.component';
 import { RegisterAnAccountComponent } from './register-an-account/register-an-account.component';
 import { CartManagementComponent } from './cart-management/cart-management.component';
+import { PersonalInformationComponent } from './personal-information/personal-information.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { CartManagementComponent } from './cart-management/cart-management.compo
     BookingComponent,
     ListCarComponent,
     RegisterAnAccountComponent,
-    CartManagementComponent],
+    CartManagementComponent,
+    PersonalInformationComponent,
+    HistoryComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,

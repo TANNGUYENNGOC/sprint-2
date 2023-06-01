@@ -1,5 +1,6 @@
 package com.car_management.service.oder;
 
+import com.car_management.dto.history.IHistoryDTO;
 import com.car_management.dto.oder.IOderDTO;
 import com.car_management.dto.oder.OderDTO;
 import com.car_management.dto.oder_detail.IOderDetailDTO;
@@ -108,12 +109,19 @@ public class OderServiceImpl implements IOderService {
     }
 
     @Override
-    public void payOrders(Integer idCustomer) {
-        iOderRepository.payOrders(idCustomer);
+    public void payOrders(Integer idCustomer,String modifyDate) {
+        iOderRepository.payOrders(idCustomer,modifyDate);
     }
 
     @Override
     public void payOrderDetail(Integer idOrder) {
         iOderRepository.payOrderDetail(idOrder);
     }
+
+    @Override
+    public Page<IHistoryDTO> getHistory(Integer idCustomer, Pageable pageable) {
+        return iOderRepository.getHistory(idCustomer,pageable);
+    }
+
+
 }
