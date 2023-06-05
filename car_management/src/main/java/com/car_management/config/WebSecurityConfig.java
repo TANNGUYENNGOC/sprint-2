@@ -27,8 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     CustomUserDetailsService customUserDetailsService;
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
     @Bean
-    public JwtAuthenticationFilter jwtTokenFilter(){
+    public JwtAuthenticationFilter jwtTokenFilter() {
         return new JwtAuthenticationFilter();
     }
 
@@ -36,10 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
+
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     @Override
     public AuthenticationManager authenticationManager() throws Exception {
@@ -48,14 +51,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+//        httpSecurity.authorizeRequests().antMatchers("","").access("hasRole('ADMIN')");
+        httpSecurity.authorizeRequests().antMatchers("/user/**").access("hasRole('USER')");
+//        httpSecurity.authorizeRequests().antMatchers("api-Cart/lisCart",
+//                "/login",
+//                "/register",
+//                "/change-password",
+//                "/reset-password",
+//                "/forgot-password",
+//                "/check-otp").access("hasAnyRole('ADMIN','USER')");
         httpSecurity.cors().and().csrf().disable()
-                .authorizeRequests().antMatchers("/**").permitAll()
-                .anyRequest().authenticated()
-                .and().exceptionHandling()
+                .authorizeRequests()
+                .antMatchers("/public/**") // tat ca các role: VD home;
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .exceptionHandling()
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
         InMemoryTokenRepositoryImpl memory = new InMemoryTokenRepositoryImpl(); // Ta lưu tạm remember me trong memory (RAM). Nếu cần mình có thể lưu trong database

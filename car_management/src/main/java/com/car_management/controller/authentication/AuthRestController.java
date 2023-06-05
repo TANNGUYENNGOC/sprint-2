@@ -36,6 +36,7 @@ import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("public")
 public class AuthRestController {
 
     @Autowired

@@ -15,19 +15,19 @@ export class CarService {
 
   findAllCar(page:number,idCarType:string,idCarSeries:string,nameCar:string):Observable<any>{
     console.log("idkieuxe: "+idCarType)
-    return this.httpClient.get<CarDTO[]>('http://localhost:8080/api-Car/listCar?page='+page+'&idCarType='+idCarType+'&idCarSeries='+idCarSeries+'&nameCar='+nameCar);
+    return this.httpClient.get<CarDTO[]>('http://localhost:8080/public/api-Car/listCar?page='+page+'&idCarType='+idCarType+'&idCarSeries='+idCarSeries+'&nameCar='+nameCar);
     // return this.httpClient.get<CarDTO[]>('http://localhost:8080/api-Car/listCar?page='+page+'&idCarType='+6+'&idCarSeries='+idCarSeries+'&nameCar='+nameCar);
   };
 
   findById(id: number):Observable<any> {
-    return this.httpClient.get<Car>('http://localhost:8080/api-Car/detail?id='+id);
+    return this.httpClient.get<Car>('http://localhost:8080/public/api-Car/detail?id='+id);
   }
 
   findAllCarType():Observable<any>{
     // console.log(this.httpClient.get<CarType[]>("http://localhost:8080/api-Car/listCarType"))
-    return this.httpClient.get<CarType[]>("http://localhost:8080/api-Car/listCarType");
+    return this.httpClient.get<CarType[]>("http://localhost:8080/public/api-Car/listCarType");
   }
   findAllCarSeries():Observable<any> {
-    return this.httpClient.get<CarSeries[]>("http://localhost:8080/api-Car/listCarSeries");
+    return this.httpClient.get<CarSeries[]>("http://localhost:8080/public/api-Car/listCarSeries");
   }
 }

@@ -13,7 +13,7 @@ export class LoginService {
 
 
   logIn(login:Login) :Observable<any>{
-     return  this.httpClient.post<Login>('http://localhost:8080/login',login);
+     return  this.httpClient.post<Login>('http://localhost:8080/public/login',login);
       //  .subscribe(
       // resonse =>{
       //   // @ts-ignore

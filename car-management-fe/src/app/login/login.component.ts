@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
       this.tokenStorageService.saveTokenLocal(next.token);
       this.tokenStorageService.saveUserLocal(next);
       Swal.fire({
-        position: 'top-end',
         icon: 'success',
         title: 'Đăng nhập thành công',
         showConfirmButton: false,

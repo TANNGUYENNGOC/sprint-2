@@ -1,6 +1,7 @@
 package com.car_management.service.oder;
 
 import com.car_management.dto.history.IHistoryDTO;
+import com.car_management.dto.history.IHistoryDTO1;
 import com.car_management.dto.oder.IOderDTO;
 import com.car_management.dto.oder.OderDTO;
 import com.car_management.dto.oder_detail.IOderDetailDTO;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OderServiceImpl implements IOderService {
@@ -109,8 +112,8 @@ public class OderServiceImpl implements IOderService {
     }
 
     @Override
-    public void payOrders(Integer idCustomer,String modifyDate) {
-        iOderRepository.payOrders(idCustomer,modifyDate);
+    public void payOrders(Integer idCustomer) {
+        iOderRepository.payOrders(idCustomer);
     }
 
     @Override
@@ -123,5 +126,8 @@ public class OderServiceImpl implements IOderService {
         return iOderRepository.getHistory(idCustomer,pageable);
     }
 
-
+    @Override
+    public List<IHistoryDTO1> getHistory1(Integer idOderDetail) {
+        return iOderRepository.getHistory1(idOderDetail);
+    }
 }

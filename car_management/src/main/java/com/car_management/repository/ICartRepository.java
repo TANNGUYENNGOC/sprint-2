@@ -13,8 +13,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface ICartRepository extends JpaRepository<Cart,Integer> {
-    @Query(value = "select cart.id,c.id as carId,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img,cart.sum_price as sumPrice from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and cart.number_of_vehicles > 0 and status = false",
-    countQuery = "select cart.id,c.id as carId,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img,cart.sum_price as sumPrice from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and cart.number_of_vehicles > 0 and status = false",
+    @Query(value = "select cart.id,c.id as carId,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img,cart.sum_price as sumPrice from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and cart.number_of_vehicles > 0 and status = false order by cart.id desc",
+    countQuery = "select cart.id,c.id as carId,cart.number_of_vehicles as numberOfVehicles,c.name as carName,ct.name as carType,cs.name as carSeries,c.img,cart.sum_price as sumPrice from cart join user u on u.id = cart.user_id join car c on c.id = cart.car_id join car_series cs on c.car_series_id = cs.id join car_type ct on c.car_type_id = ct.id where u.id =:idCustomer and cart.number_of_vehicles > 0 and status = false order by cart.id desc",
     nativeQuery = true)
     Page<ICartDTO> cartList(@Param("idCustomer") int idCustomer, Pageable pageable);
 

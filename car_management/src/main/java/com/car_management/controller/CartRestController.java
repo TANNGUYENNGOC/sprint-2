@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @RestController
-@RequestMapping("api-Cart")
+@RequestMapping("")
 @CrossOrigin("*")
 public class CartRestController {
     @Autowired
@@ -38,7 +39,7 @@ public class CartRestController {
     @Autowired
     private IUserService iUserService;
 
-    @GetMapping("lisCart")
+    @GetMapping("/api-Cart/lisCart")
     public ResponseEntity<Page<ICartDTO>> getListCart(@PageableDefault(value = 4) Pageable pageable,
                                                       @RequestParam(defaultValue = "") Integer idCustomer) {
         Page<ICartDTO> iCartDTOS = iCartService.cartList(idCustomer, pageable);
@@ -47,7 +48,7 @@ public class CartRestController {
         }
         return new ResponseEntity<>(iCartDTOS, HttpStatus.OK);
     }
-    @PostMapping("deleteOneRecordCart")
+    @PostMapping("user/api-Cart/deleteOneRecordCart")
     public ResponseEntity deleteOneRecordCart(@RequestBody CartDTO1 cartDTO1,
                                               @RequestParam Integer idCustomer){
         ICartDTO iCartDTO = iCartService.checkForExistence(idCustomer, cartDTO1.getCarId());
@@ -78,7 +79,7 @@ public class CartRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping("addCart")
+    @PostMapping("user/api-Cart/addCart")
     public ResponseEntity addCart(@RequestBody CartDTO cartDTO) {
         ICartDTO iCartDTO = iCartService.checkForExistence(cartDTO.getUserId(), cartDTO.getCarId());
         if (iCartDTO != null) {
@@ -151,12 +152,11 @@ public class CartRestController {
                 Integer totalAll = iCartService.totalOderCustomer(cartDTO.getUserId());
                 iOderService.updateOrderDetail(totalAll, price, iOderDTO1.getId());
             }
-
         }
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping("deleteCart")
+    @PostMapping("user/api-Cart/deleteCart")
     public ResponseEntity deleteCart(@RequestBody CartDTO cartDTO) {
         ICartDTO iCartDTO = iCartService.checkForExistence(cartDTO.getUserId(), cartDTO.getCarId());
         if (iCartDTO != null) {
@@ -209,20 +209,21 @@ public class CartRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("oderDetail")
+    @GetMapping("user/api-Cart/oderDetail")
     public ResponseEntity<IOderDetailDTO1> getOderDetail(@RequestParam() Integer idCustomer) {
         IOderDetailDTO1 iOderDetailDTO1 = iOderService.selectOrderDetaiByIdCustomer(idCustomer);
         return new ResponseEntity<>(iOderDetailDTO1, HttpStatus.OK);
     }
 
-    @PostMapping("payCart")
+    @PostMapping("user/api-Cart/payCart")
+//    @PreAuthorize("hasRole('USER')")
     public ResponseEntity payCart(@RequestBody CartDTO cartDTO){
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = dateTime.format(formatter);
 
         iOderService.payCart(cartDTO.getUserId());
-        iOderService.payOrders(cartDTO.getUserId(),formattedDateTime);
+        iOderService.payOrders(cartDTO.getUserId());
         IOderDetailDTO1 iOderDetailDTO1 = iOderService.selectOrderDetaiByIdCustomer(cartDTO.getUserId());
         iOderService.payOrderDetail(iOderDetailDTO1.getOrdersId());
         return new ResponseEntity(HttpStatus.OK);

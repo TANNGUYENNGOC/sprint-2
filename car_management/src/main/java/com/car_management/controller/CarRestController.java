@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api-Car")
+@RequestMapping("")
 @CrossOrigin("*")
 public class CarRestController {
     @Autowired
     private ICarService iCarService;
 
-    @GetMapping("listCar")
+    @GetMapping("public/api-Car/listCar")
     public ResponseEntity<Page<ICarDTO>> getListCar(@PageableDefault(value = 6) Pageable pageable,
                                                     @RequestParam(defaultValue = "") String idCarType,
                                                     @RequestParam(defaultValue = "") String idCarSeries,
@@ -35,7 +35,7 @@ public class CarRestController {
         return new ResponseEntity<>(iCarDTOS,HttpStatus.OK);
     }
 
-    @GetMapping("detail")
+    @GetMapping("public/api-Car/detail")
     public ResponseEntity<Car> detail(@RequestParam Integer id){
 //        Car car = iCarService.findById(id);
         Car car1 = iCarService.findCarById(id);
@@ -45,7 +45,7 @@ public class CarRestController {
         return new ResponseEntity<>(car1,HttpStatus.OK);
     }
 
-    @GetMapping("listCarType")
+    @GetMapping("public/api-Car/listCarType")
     public ResponseEntity<List<CarType>> getlistCarType(){
         List<CarType> carTypeList = iCarService.findAllCarType();
         if (carTypeList.isEmpty()){
@@ -54,7 +54,7 @@ public class CarRestController {
         return new ResponseEntity<>(carTypeList,HttpStatus.OK);
     }
 
-    @GetMapping("listCarSeries")
+    @GetMapping("public/api-Car/listCarSeries")
     public ResponseEntity<List<CarSeries>> getlistCarSeries(){
         List<CarSeries> CarSeries = iCarService.findAllCarSeries();
         if (CarSeries.isEmpty()){

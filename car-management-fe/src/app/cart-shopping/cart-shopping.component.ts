@@ -78,6 +78,7 @@ export class CartShoppingComponent implements OnInit {
       userId: this.tokenStorageService.getUser().idUser
     }
     this.cartService.payToCart(cartDTO).subscribe(next => {
+      console.log("zzzzzzzzzzzzzzzzzzzzzzzz"+cartDTO)
       this.router.navigateByUrl("/list-car")
       Swal.fire({
         icon: 'success',
@@ -124,11 +125,11 @@ export class CartShoppingComponent implements OnInit {
       })
 
     } else if (numberOfVehicles == 1 && Swal.fire({
-      title: 'Do you want to save the changes?',
+      title: 'Bạn có chắc muốn xóa mặt hàng này khỏi giỏ hàng không?',
       showDenyButton: true,
       showCancelButton: false,
-      confirmButtonText: 'Save',
-      denyButtonText: `Don't save`,
+      confirmButtonText: 'Có',
+      denyButtonText: `Hủy`,
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -152,7 +153,7 @@ export class CartShoppingComponent implements OnInit {
           })
         })
       } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info')
+        Swal.fire('Hủy tác vụ thành công', '', 'info')
         console.log(false)
       }
     })) {
@@ -160,9 +161,26 @@ export class CartShoppingComponent implements OnInit {
   }
 
   deleteOneRecordCart(cart: IOderDetailDTO) {
-    console.log(cart)
-    this.cartService.deleteOneRecordCart(cart).subscribe(next => {
-    alert("Xóa thành công")
-    })
+
+    if (Swal.fire({
+      title: 'Bạn có chắc muốn xóa mặt hàng này khỏi giỏ hàng không?',
+      showDenyButton: true,
+      confirmButtonText: 'Có',
+      denyButtonText: `Hủy`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.cartService.deleteOneRecordCart(cart).subscribe(next => {
+          window.location.reload();
+
+        })
+        Swal.fire('Đã lưu thay đổi', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Hủy tác vụ thành công', '', 'info')
+      }
+    })){
+
+    }
+
   }
 }

@@ -41,6 +41,12 @@ export class DetailComponent implements OnInit {
       userId: this.tokenStorageService.getUser().idUser
     }
     this.cartService.addCart(cartDTO).subscribe(next => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Thêm thành công vào giỏ hàng',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }, error => {
       Swal.fire({
         icon: 'error',

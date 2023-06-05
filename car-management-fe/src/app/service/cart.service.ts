@@ -22,21 +22,22 @@ export class CartService {
 
   addCart(cartDTO:CartDTO):Observable<any>{
     console.log(cartDTO)
-    return this.httpClient.post<CartDTO>('http://localhost:8080/api-Cart/addCart',cartDTO);
+    return this.httpClient.post<CartDTO>('http://localhost:8080/user/api-Cart/addCart',cartDTO);
   }
 
   deleteCart(cartDTO:CartDTO):Observable<any>{
-    return this.httpClient.post<CartDTO>('http://localhost:8080/api-Cart/deleteCart',cartDTO);
+    return this.httpClient.post<CartDTO>('http://localhost:8080/user/api-Cart/deleteCart',cartDTO);
   }
 
   getOrderDetail():Observable<any>{
     let idCustomer:number = this.tokenStorageService.getUser().idUser;
-    return this.httpClient.get<OrderDetailDTO>('http://localhost:8080/api-Cart/oderDetail?idCustomer='+idCustomer);
+    return this.httpClient.get<OrderDetailDTO>('http://localhost:8080/user/api-Cart/oderDetail?idCustomer='+idCustomer);
   }
 
   payToCart(cartDTO:CartDTO):Observable<any>{
     console.log(cartDTO)
-    return this.httpClient.post<CartDTO>('http://localhost:8080/api-Cart/payCart',cartDTO);
+    let token = this.tokenStorageService.getToken();
+    return this.httpClient.post<CartDTO>('http://localhost:8080/user/api-Cart/payCart',cartDTO);
   }
 
   deleteOneRecordCart(cart: IOderDetailDTO):Observable<any>{
@@ -51,6 +52,6 @@ export class CartService {
       sumPrice: cart.sumPrice
     };
     let idCustomer:number = this.tokenStorageService.getUser().idUser;
-    return this.httpClient.post<CartDTO1>('http://localhost:8080/api-Cart/deleteOneRecordCart?idCustomer='+idCustomer,cartDTO1);
+    return this.httpClient.post<CartDTO1>('http://localhost:8080/user/api-Cart/deleteOneRecordCart?idCustomer='+idCustomer,cartDTO1);
   }
 }

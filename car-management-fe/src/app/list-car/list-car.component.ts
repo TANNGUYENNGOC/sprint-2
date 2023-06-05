@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
   styleUrls: ['./list-car.component.css']
 })
 export class ListCarComponent implements OnInit {
+  isLogin: boolean;
   listCar: CarDTO [] = [];
   teamPage: ProjectJson;
   page: number;
@@ -34,10 +35,16 @@ export class ListCarComponent implements OnInit {
 
   }
 
+
   ngOnInit(): void {
     this.getListCar(0, this.idCarType, this.idCarSeries, this.nameCar);
     this.getAllCarType();
     this.getAllCarSeries();
+    this.checkLogin()
+  }
+
+  checkLogin() {
+    this.isLogin = this.tokenStorageService.isLogger();
   }
 
   getListCar(page: number, idCarType: string, idCarSeries: string, nameCar: string) {
@@ -53,7 +60,11 @@ export class ListCarComponent implements OnInit {
         this.teamPage = next;
       },
       error => {
-        console.log(error)
+        Swal.fire({
+          icon: 'error',
+          title: 'Không có dữ liệu',
+          text: 'Mặt hàng tìm kiếm không tồn tại!'
+        })
       });
 
 
@@ -76,6 +87,7 @@ export class ListCarComponent implements OnInit {
       this.listCarSeries = next;
     })
   }
+
 
   addCart(idCar: number) {
     // @ts-ignore

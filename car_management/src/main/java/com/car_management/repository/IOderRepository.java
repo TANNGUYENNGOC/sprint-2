@@ -1,6 +1,7 @@
 package com.car_management.repository;
 
 import com.car_management.dto.history.IHistoryDTO;
+import com.car_management.dto.history.IHistoryDTO1;
 import com.car_management.dto.oder.IOderDTO;
 import com.car_management.dto.oder.OderDTO;
 import com.car_management.dto.oder_detail.IOderDetailDTO;
@@ -13,6 +14,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 public interface IOderRepository extends JpaRepository<Orders, Integer> {
     //Lấy ra số lượng sản phẩm của khách hàng
@@ -107,15 +110,15 @@ public interface IOderRepository extends JpaRepository<Orders, Integer> {
     //3 phương thức dùng để thanh toán
     @Transactional
     @Modifying
-    @Query(value = "update cart set status = 1 where user_id = :idCustomer",
+    @Query(value = "update cart set status = 1,date_pay = current_timestamp() where user_id = :idCustomer and status = false",
             nativeQuery = true)
     void payCart(@Param("idCustomer") Integer idCustomer);
 
     @Transactional
     @Modifying
-    @Query(value = "update orders set flag = 1,modify_date = :modifyDate where user_id = :idCustomer",
+    @Query(value = "update orders set flag = 1,modify_date = current_timestamp() where user_id = :idCustomer and flag = false",
             nativeQuery = true)
-    void payOrders(@Param("idCustomer") Integer idCustomer,@Param("modifyDate") String modifyDate);
+    void payOrders(@Param("idCustomer") Integer idCustomer);
 
     @Transactional
     @Modifying
@@ -124,8 +127,13 @@ public interface IOderRepository extends JpaRepository<Orders, Integer> {
     void payOrderDetail(@Param("idOrder") Integer idOrder);
 
     //Lấy ra lịch sử
-    @Query(value = "select oder_detail.id,oder_detail.price,oder_detail.quantity,o.create_date as createDate,o.modify_date as modifyDate from oder_detail join orders o on o.id = oder_detail.orders_id join user u on u.id = o.user_id where oder_detail.flag = true and u.id = :idCustomer",
-            countQuery = "select oder_detail.id,oder_detail.price,oder_detail.quantity,o.create_date as createDate,o.modify_date as modifyDate from oder_detail join orders o on o.id = oder_detail.orders_id join user u on u.id = o.user_id where oder_detail.flag = true and u.id = :idCustomer"
+    @Query(value = "select oder_detail.id,oder_detail.price,oder_detail.quantity,o.create_date as createDate,o.modify_date as modifyDate from oder_detail join orders o on o.id = oder_detail.orders_id join user u on u.id = o.user_id where oder_detail.flag = true and u.id = :idCustomer order by orders_id desc",
+            countQuery = "select oder_detail.id,oder_detail.price,oder_detail.quantity,o.create_date as createDate,o.modify_date as modifyDate from oder_detail join orders o on o.id = oder_detail.orders_id join user u on u.id = o.user_id where oder_detail.flag = true and u.id = :idCustomer order by orders_id desc"
             , nativeQuery = true)
     Page<IHistoryDTO> getHistory(@Param("idCustomer")Integer idCustomer, Pageable pageable);
+    //CHi tiết lịch sử
+    @Query(value = "select c2.name as nameCar, cs.name as seriesCar, ct.name carType, c.sum_price as sumPrice,c.number_of_vehicles as numberOfVehicles\n" +
+            "from user u join orders o on u.id = o.user_id join oder_detail od on o.id = od.orders_id join cart c on u.id = c.user_id join car c2 on c2.id = c.car_id join car_type ct on ct.id = c2.car_type_id join car_series cs on cs.id = c2.car_series_id where od.id = :idOderDetail and o.modify_date = c.date_pay",
+    nativeQuery = true)
+    List<IHistoryDTO1> getHistory1(@Param("idOderDetail") Integer idOderDetail);
 }

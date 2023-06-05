@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../service/user.service";
 import {HistoryDTO} from "../dto/history-dto";
 import {ProjectJson} from "../model/project-json";
+import {HistoryDetailDTO} from "../dto/history-detail-dto";
 
 @Component({
   selector: 'app-history',
@@ -10,8 +11,11 @@ import {ProjectJson} from "../model/project-json";
 })
 export class HistoryComponent implements OnInit {
   historyList: HistoryDTO[] = [];
+  historyDetailList: HistoryDetailDTO [] = [];
   teamPage: ProjectJson;
   page: number = 0;
+
+  test: string = '';
 
   constructor(private userService: UserService) {
   }
@@ -24,7 +28,6 @@ export class HistoryComponent implements OnInit {
     this.userService.getHistory(page).subscribe(next => {
       this.historyList = next.content;
       this.teamPage = next;
-      console.log(next)
     })
   }
 
@@ -33,4 +36,12 @@ export class HistoryComponent implements OnInit {
 
   }
 
+
+  getHistoryDetail(id: number) {
+
+    this.userService.getHistoryDetail(id).subscribe(next=>{
+      this.historyDetailList = next;
+      console.log(next)
+    })
+  }
 }
