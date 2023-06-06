@@ -9,6 +9,7 @@ import {CartDTO} from "../dto/cart-dto";
 import {TokenStorageService} from "../service/token-storage.service";
 import {render} from "creditcardpayments/creditCardPayments";
 import Swal from "sweetalert2";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-list-car',
@@ -30,7 +31,9 @@ export class ListCarComponent implements OnInit {
 
   constructor(private carService: CarService,
               private cartService: CartService,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private titleService: Title) {
+    this.titleService.setTitle("Sản phẩm")
 
 
   }

@@ -11,7 +11,6 @@ public interface ICarDTO {
     String getOrigin();
     String getCarSeriesName();
     String getDiscount();
-
-
+    String getQuantity();
 
 }

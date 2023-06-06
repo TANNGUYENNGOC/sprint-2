@@ -173,7 +173,7 @@
   }
 
   .list-car-container {
-    margin-top: 94px;
+    /*margin-top: 94px;*/
     display: block;
   }
 
@@ -446,6 +446,19 @@
   .list-car-container .box-product-contain-list-car .product-pagination {
     margin-top: 70px;
   }
+
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #d81423;
+    border-color: #d81423;
+  }
+  a[_ngcontent-ycp-c53] {
+    color: #d81423;
+    text-decoration: none;
+    background-color: transparent;
+  }
+
 </style>
 
 <app-header></app-header>
@@ -505,6 +518,8 @@
             <div class="product-item-image">
               <div [routerLink]="['/detail',car.id]" class="corolla-altis-1-8v">
                 <img style="width: 25rem" class="lazy" src="{{car.url}}" alt="Corolla Altis 1.8V"/>
+                <div  *ngIf="car.discount>0" style="background-color: red;border-radius: 50%;width: 40px;height: 40px;padding-top: 2%;padding-left: 1%;color: white; font-family: 'Segoe UI'; font-weight: bold">{{car.discount}}%</div>
+
               </div>
             </div>
             <br>
@@ -512,7 +527,7 @@
               <a [routerLink]="['/detail',car.id]">
                 <h2 class="content-title">{{car.name}}</h2>
                 <p class="content-price">
-                  <span>Giá từ {{car.price}}</span>
+                  <span>Giá từ {{car.price|number:'1.0-0'}}</span>
                   <span>VNĐ</span>
                 </p>
                 <div class="content-product-description">
@@ -521,7 +536,7 @@
                   <p>Xăng</p><br>
                   <p>{{car.origin}}</p><br>
                   <p>{{car.carSeriesName}} &nbsp;</p><br>
-                  <p>Khuyến mãi: {{car.discount}}%</p><br>
+                  <p style="color: red" *ngIf="car.discount>0">Khuyến mãi: {{car.discount}}%</p><br>
                   <p>Động cơ Xăng dung tích 1798cc</p>
                 </div>
               </a>

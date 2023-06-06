@@ -9,5 +9,6 @@ export interface CarDTO {
   origin?:string;
   carSeriesName?:string;
   discount?:string;
+  quantity?:string;
 
 }

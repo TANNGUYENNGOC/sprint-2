@@ -1,25 +1,46 @@
+<style>
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #d81423;
+    border-color: #d81423;
+  }
+  @media (min-width: 576px){
+    .modal-dialog {
+      /* max-width: 500px; */
+      margin: 1.75rem auto;
+    }
+  }
+  .modal-dialog {
+    display: flex;
+    max-width: 600px !important;
+    justify-content: center;
+
+  }
+</style>
 <app-header></app-header>
-<div class="row mt-3">
+<div class="row mt-3" style="padding: 0;margin: 0; overflow: hidden">
   <div class="col-2"></div>
   <div class="col-8">
     <table class="table table-bordered">
-      <thead class="thead-dark">
+      <thead>
       <tr>
         <th scope="col">STT</th>
         <th scope="col">Tổng sản phẩm</th>
         <th scope="col">Tổng thanh toán</th>
         <th scope="col">Ngày chỉnh sửa</th>
         <th scope="col">Ngày thanh toán</th>
+        <th scope="col">Chi tiết</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let history of historyList;let i = index">
         <th scope="row">{{i+1}}</th>
         <td>{{history.quantity}}</td>
-        <td>{{history.price}}000</td>
+        <td>{{history.price|number:'1.0-0'}}VNĐ</td>
         <td>{{history.createDate}}</td>
         <td>{{history?.modifyDate}}</td>
-        <td><button (click)="getHistoryDetail(history.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <td><button style="background-color: #d81423;border-radius: 0;border: none" (click)="getHistoryDetail(history.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Chi tiết
         </button></td>
       </tr>
@@ -90,14 +111,14 @@
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Chi tiết lịch sử</h5>
+    <div class="modal-content" style="width: 700px">
+      <div class="modal-header" style="background-color: #d81423;color: #ffffff">
+        <h5 class="modal-title" id="exampleModalLabel" >Chi tiết lịch sử</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <table class="table">
-          <thead  class="thead-dark">
+        <table class="table ">
+          <thead >
           <tr>
             <th scope="col">STT</th>
             <th scope="col">Tên</th>
@@ -120,7 +141,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button style="border-radius: 0" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

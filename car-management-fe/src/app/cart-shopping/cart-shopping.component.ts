@@ -8,6 +8,7 @@ import {IOderDetailDTO} from "../dto/ioder-detail-dto";
 import {OrderDetailDTO} from "../dto/order-detail-dto";
 import {render} from "creditcardpayments/creditCardPayments";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-cart-shopping',
@@ -22,8 +23,9 @@ export class CartShoppingComponent implements OnInit {
 
   constructor(private cartService: CartService,
               private tokenStorageService: TokenStorageService,
-              private router: Router) {
-
+              private router: Router,
+              private titleService: Title) {
+this.titleService.setTitle("Giỏ hàng")
 
   }
 
@@ -58,6 +60,7 @@ export class CartShoppingComponent implements OnInit {
       this.teamPage = next;
       console.log(this.cartList)
     }, error => {
+      console.log(error)
       Swal.fire({
         icon: 'error',
         title: 'Oops...',

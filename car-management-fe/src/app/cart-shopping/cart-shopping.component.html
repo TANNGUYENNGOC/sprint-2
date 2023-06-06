@@ -1,9 +1,23 @@
+<style>
+  .page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #d81423;
+    border-color: #d81423;
+  }
+  .text-limit {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px;
+  }
+</style>
 <app-header></app-header>
-<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+<section class="h-100 h-custom" style="background-color: #ffffff;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12">
-        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+        <div class="card card-registration card-registration-2 shadow" style="border-radius: 15px;border: #d81423 1px solid">
           <div class="card-body p-0">
             <div class="row g-0">
               <div class="col-lg-7">
@@ -13,7 +27,11 @@
                     <h6 class="mb-0 text-muted">Số lượng sản phẩm: {{orderDetail?.quantity}}</h6>
                   </div>
                   <hr class="my-4">
-
+                  <div *ngIf="orderDetail?.quantity==null"
+                       class="row mb-4 d-flex justify-content-between align-items-center">
+                    <img src="https://bizweb.dktcdn.net/100/408/147/themes/794761/assets/empty-cart.png?1614232945745"
+                         alt="">
+                  </div>
                   <div *ngFor="let cart of cartList" class="row mb-4 d-flex justify-content-between align-items-center">
                     <div class="col-md-2 col-lg-2 col-xl-2">
                       <img
@@ -27,32 +45,36 @@
                       <h6 class="text-muted">{{cart.carType}}</h6>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex justify-content-center align-items-center">
-                      <button style="margin-left: 20px" (click)="addCarCart(cart.carId)" class="btn btn-link px-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                             class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                          <path
-                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
-                        </svg>
-                      </button>
-                      <p class="m-0">{{cart.numberOfVehicles}}</p>
-                      <button (click)="deleteCarCart(cart.carId,cart.numberOfVehicles)" class="btn btn-link px-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                      <button style="margin-left: 20px" (click)="deleteCarCart(cart.carId,cart.numberOfVehicles)"
+                              class="btn btn-link px-2">
+                        <svg  xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                              class="bi bi-dash-square-fill" viewBox="0 0 16 16">
                           <path
                             d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2.5 7.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1z"/>
                         </svg>
                       </button>
-                      <button (click)="deleteOneRecordCart(cart)" class="btn btn-link px-2" style="margin-left: 30px">
-                        <svg style="color: #d81423" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                          <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                      <p class="m-0">{{cart.numberOfVehicles}}</p>
+
+                      <button (click)="addCarCart(cart.carId)" class="btn btn-link px-2">
+                        <svg style="color: #d81423" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                             class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+                          <path
+                            d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
                         </svg>
                       </button>
-                    </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
 
                     </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                      <p class="text-limit">{{cart.sumPrice|number:'1.0-0'}}VNĐ</p>
+                    </div>
                     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                      <button  (click)="deleteOneRecordCart(cart)" class="btn btn-link px-2" style="margin-left: 30px">
+                        <svg style="color: #d81423" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                             fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                          <path
+                            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                        </svg>
+                      </button>
                     </div>
                   </div>
 
@@ -134,12 +156,12 @@
 
                   <div class="d-flex justify-content-between mb-5">
                     <h5 class="text-uppercase">Thành tiền: </h5>
-                    <h5>{{orderDetail?.price}}</h5>
+                    <h5>{{orderDetail?.price|number:'1.0-0'}}VNĐ</h5>
                   </div>
                   <div id="myPaypalButtons"></div>
-<!--                  <button (click)="pay()" type="button" class="btn btn-dark btn-block btn-lg"-->
-<!--                          data-mdb-ripple-color="dark">Thanh toán ngay-->
-<!--                  </button>-->
+                  <!--                  <button (click)="pay()" type="button" class="btn btn-dark btn-block btn-lg"-->
+                  <!--                          data-mdb-ripple-color="dark">Thanh toán ngay-->
+                  <!--                  </button>-->
                 </div>
               </div>
             </div>

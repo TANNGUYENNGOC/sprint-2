@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     }, error => {
       Swal.fire({
         icon: 'error',
-        title: 'Mật khẩu không chính xác.',
+        title: 'Tên đăng nhập hoặc mật khẩu không chính xác.',
         text: 'Vui lòng đăng nhập lại!',
         footer: ''
       })

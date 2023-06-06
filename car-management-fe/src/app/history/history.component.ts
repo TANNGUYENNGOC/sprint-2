@@ -3,6 +3,7 @@ import {UserService} from "../service/user.service";
 import {HistoryDTO} from "../dto/history-dto";
 import {ProjectJson} from "../model/project-json";
 import {HistoryDetailDTO} from "../dto/history-detail-dto";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-history',
@@ -17,7 +18,9 @@ export class HistoryComponent implements OnInit {
 
   test: string = '';
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private title:Title) {
+    this.title.setTitle("Lịch sử")
   }
 
   ngOnInit(): void {

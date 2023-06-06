@@ -25,23 +25,24 @@
             <h4 style="font-family: Arial; font-weight: lighter">Xứng tầm doanh nhân</h4>
             <br>
             <div class="row d-flex">
-              <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4"><a class="text-decoration-none text-center" href=""><h5 style="color: red">Xem thông số</h5></a>
+              <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4"><a class="text-decoration-none text-center" href=""><h5 style="color: red;margin: 0;padding: 4px">Xem thông số</h5></a>
               </div>
               <div class="col-6 col-xl-6 col-sm-6 col-md-6 col-lg-6 "
                    style="border-left: #6c757d 1px solid">
-                <button (click)="addCarCart(car.id)" class="text-decoration-none" style="background-color: #d81423;border: #d81423"><h5 class="text-center" style="color: #ffffff">Thêm vào giỏ hàng</h5></button></div>
+                <button (click)="addCarCart(car.id)" class="text-decoration-none" style="background-color: #d81423;border: #d81423"><h5 class="text-center" style="color: #ffffff;margin: 0;padding: 4px">Thêm vào giỏ hàng</h5></button></div>
             </div>
             <br>
             <br>
             <div class="shadow">
-              <div class="row d-flex">
-                <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4 text-center"><h5>Số chỗ ngồi</h5>
+              <div class="row d-flex" >
+                <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4 text-center" style="padding: 10px">
+                  <h5>Số chỗ ngồi</h5>
                   <p>{{car.numberOfSeats}}</p></div>
                 <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4 text-center"
-                     style="border-left: #6c757d 1px solid"><h5>Kiểu dáng</h5>
+                     style="border-left: #6c757d 1px solid;padding: 10px"><h5>Kiểu dáng</h5>
                   <p>{{car.carType.name}}</p></div>
                 <div class="col-4 col-xl-4 col-sm-4 col-md-4 col-lg-4 text-center"
-                     style="border-left: #6c757d 1px solid"><h5>Nhiên liệu</h5>
+                     style="border-left: #6c757d 1px solid;padding: 10px"><h5>Nhiên liệu</h5>
                   <p>{{car.fuel}}</p></div>
               </div>
               <br>
@@ -50,7 +51,7 @@
                   <p>{{car.origin}}</p></div>
                 <div class="col-8 col-xl-8 col-sm-8 col-md-8 col-lg-8 text-center"
                      style="border-left: #6c757d 1px solid"><h5>Giá từ</h5>
-                  <p>{{car.price}}000 VND</p></div>
+                  <p>{{car.price|number:'1.0-0'}}VNĐ</p></div>
               </div>
             </div>
           </div>
