@@ -51,7 +51,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-
 //        httpSecurity.authorizeRequests().antMatchers("","").access("hasRole('ADMIN')");
         httpSecurity.authorizeRequests().antMatchers("/user/**").access("hasRole('USER')");
 //        httpSecurity.authorizeRequests().antMatchers("api-Cart/lisCart",
@@ -63,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                "/check-otp").access("hasAnyRole('ADMIN','USER')");
         httpSecurity.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/public/**") // tat ca các role: VD home;
+                .antMatchers("/public/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

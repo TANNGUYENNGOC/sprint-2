@@ -10,6 +10,7 @@ import java.util.Date;
 
 @Component
 public class JwtTokenProvider {
+
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
     private final String jwtSecret = "thanhtu2607";
     private int jwtExpiration = 86400;
@@ -18,7 +19,7 @@ public class JwtTokenProvider {
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
         return Jwts.builder().setSubject(userPrinciple.getUsername())
                 .setIssuedAt(new Date()).setExpiration(new Date(new Date().getTime()+jwtExpiration*1000))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtSecret) //Tạo chữ kí dựa trên mã HS512 và chuỗi jwtSecret
                 .compact();
     }
 
